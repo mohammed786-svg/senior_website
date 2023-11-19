@@ -52,7 +52,7 @@ class="ftco-section-3 img m-0"
           <div class="col-lg-6">
             <div class="form-group">
               <label class="form-control-label" for="input-fullname">Full Name</label>
-              <input type="text" id="input-fullname" class="form-control form-control-alternative" placeholder="Enter full name" name="fullname" autocomplete="off" value="{{ data.fullname|default:'' }}"  required>
+              <input type="text" id="input-fullname" class="form-control form-control-alternative" placeholder="Enter full name" name="fullname" autocomplete="off" value="{{ data.fullname|default:'' }}" required>
             </div>
           </div>
 
@@ -91,7 +91,7 @@ class="ftco-section-3 img m-0"
           <div class="col-lg-3">
             <div class="form-group">
               <label class="form-control-label" for="input-whatsapp">Whatsapp Number</label>
-              <input type="number" id="input-whatsapp" class="form-control form-control-alternative" placeholder="Active Whatsapp Number" name="whatsappno" value="{{ data.whatsappno|default:'' }}"  required>
+              <input type="number" id="input-whatsapp" class="form-control form-control-alternative" placeholder="Active Whatsapp Number" name="whatsappno"  value="{{ data.whatsappno|default:'' }}"  required>
             </div>
           </div>
 
@@ -105,7 +105,7 @@ class="ftco-section-3 img m-0"
           <div class="col-lg-8">
             <div class="form-group">
               <label class="form-control-label" for="input-address">Address</label>
-              <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address"  type="text" name="fulladdress" value="{{ data.fulladdress|default:'' }}"  required>
+              <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address"  type="text" name="fulladdress" autocomplete="off" value="{{ data.fulladdress|default:'' }}"  required>
             </div>
           </div>
           <div class="col-lg-4">
@@ -173,7 +173,7 @@ class="ftco-section-3 img m-0"
       <div class="pl-lg-4">
         <div class="form-group">
           <label>Questions ?</label>
-          <textarea rows="4" class="form-control form-control-alternative" placeholder="write a few words if required ..." name="questions" >{{ data.questions|default:'' }}</textarea>
+          <textarea rows="4" class="form-control form-control-alternative" placeholder="write a few words if required ..." autocomplete="off" name="questions" >{{ data.questions|default:'' }}</textarea>
         </div>
       </div>
 
