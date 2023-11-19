@@ -217,13 +217,24 @@ function getCSRFToken() {
     return null;
 }
 
+$.validator.addMethod('validIndianPhoneNumber', function(value, element) {
+  return this.optional(element) || /^[6-9]\d{9}$/.test(value);
+}, 'Please enter a valid 10-digit Indian phone number.');
+
+
     $('#register-form').validate({
         rules: {
             'fullname':'required',
-            'input-primary-contact':'required',
+            'input-primary-contact': {
+              required: true,
+              validIndianPhoneNumber: true,
+          },
             'date-of-birth':'required',
             'input-gender':'required',
-            'input-whatsapp':'required',
+            'input-whatsapp': {
+              required: true,
+              validIndianPhoneNumber: true,
+          },
             'input-address':'required',
             'input-country':'required',
             'input-state':'required',
@@ -238,6 +249,12 @@ function getCSRFToken() {
             // custom error messages if needed
             'fullname': 'Please provide full.',
             'consent': 'Please accept the terms and conditions.',
+            'input-primary-contact': {
+              validIndianPhoneNumber: 'Please enter a valid 10-digit Indian phone number.',
+          },
+          'input-whatsapp': {
+              validIndianPhoneNumber: 'Please enter a valid 10-digit Indian phone number.',
+          },
         },
         errorClass: 'is-invalid',
         validClass: 'is-valid',
