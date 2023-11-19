@@ -332,7 +332,15 @@
     <script src="{% static 'js/jquery.timepicker.min.js' %}"></script>
     <script src="{% static 'js/scrollax.min.js' %}"></script>
     {% comment %} <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> {% endcomment %}
-    <script src="{% static 'js/google-map.js' %}"></script>
+    {% comment %} <script src="{% static 'js/google-map.js' %}"></script> {% endcomment %}
     <script src="{% static 'js/main_website.js' %}"></script>
+
+    <!-- Toastr -->
+<script src="{% static 'vendor/toastr/js/toastr.min.js' %}"></script>
+
+<!-- All init script -->
+<script src="{% static 'js/plugins-init/toastr-init.js' %}"></script>
+<script src="{% static 'vendor/select2/js/select2.full.min.js' %}"></script>
+<script src="{% static 'js/plugins-init/select2-init.js' %}"></script>
   </body>
 </html>

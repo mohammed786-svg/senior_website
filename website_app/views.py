@@ -132,7 +132,8 @@ def register_senior_citizen(request):
     #     if errors:
     #         # If there are validation errors, render the form with error messages
     #         return render(request, 'admin_pages/add_senior_citizen.html', {'errors': errors})
-        
+        if not queries:
+            queries = 'No queries'
         try:
             with connection.cursor() as cursor:
                 # Insert a new senior citizen
