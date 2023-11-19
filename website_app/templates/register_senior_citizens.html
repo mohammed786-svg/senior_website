@@ -42,7 +42,7 @@ style="background-image: url('{% static "images/about-us.jpg" %}')"
     </div> {% endcomment %}
     <div class="col volunteer pl-md-5 ftco-animate text-white">
       <h3 class="mb-3">Register Senior Citizen Data</h3>
-      <form method="post" class="volunter-form">
+      <form id="register-form" method="post" class="volunter-form">
         {% csrf_token %}
       
       <div class="pl-lg-4">
