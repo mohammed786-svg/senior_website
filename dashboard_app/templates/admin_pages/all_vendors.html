@@ -34,6 +34,30 @@
                 <strong>Info!</strong> {{error_msg}}
               </div>
               {% else %}
+              <div class="row m-2">
+
+                <div class="ms-2 col-lg-8 ">
+                  <form method="get">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input
+                            class="form-control form-control-alternative"
+                            type="search"
+                            id="vendor-search"
+                            name="vendor_search"
+                            placeholder="Search Vendor by Name/Mobile Number"
+                            value=""
+                            autocomplete="off"
+                            
+                        />
+                    </div>
+                </form>
+                </div>
+  
+                
+  
+                
+                </div>
           <div class="table-responsive">
             
             <table class="table align-items-center table-flush">
@@ -210,4 +234,26 @@
   </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#vendor-search').on('input', function() {
+        var searchText = $(this).val().toLowerCase();
+
+        $('tbody tr').each(function() {
+            var vendorName = $(this).find('td:eq(0)').text().toLowerCase();
+            var whatsappNumber = $(this).find('td:eq(2)').text().toLowerCase();
+            
+            if (vendorName.includes(searchText) || whatsappNumber.includes(searchText)) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+});
+
+</script>
 {% endblock %}

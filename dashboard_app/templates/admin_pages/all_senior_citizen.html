@@ -270,8 +270,7 @@
         $('tbody tr').each(function() {
             var customerName = $(this).find('td:eq(0)').text().toLowerCase(); // Convert table cell text to lowercase
             var primaryNumber = $(this).find('td:eq(2)').text().toLowerCase();
-            console.log("Search Text: " + searchText);
-            console.log("Customer Name: " + customerName);
+            
             // Check if the lowercase search text matches lowercase customer name or primary number
             if (customerName.includes(searchText) || primaryNumber.includes(searchText)) {
                 $(this).show();
