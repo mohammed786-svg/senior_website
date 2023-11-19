@@ -177,6 +177,14 @@ class="ftco-section-3 img"
         </div>
       </div>
 
+      <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="consent-checkbox" name="consent">
+            <label class="form-check-label" for="consent-checkbox">
+                I understand that my submission will be added to the Senior Seva Helpline database and consent to receive calls and invites to various activities/events related to the Elderly.
+            </label>
+        </div>
+    </div>
       <div class="row justify-content-end p-4 mt--1">
         
         <button type="submit" class="btn btn-white my-4">Submit</button>
@@ -224,11 +232,11 @@ function getCSRFToken() {
             'input-district':'required',
             'input-taluk':'required',
             'input-landmark':'required',
-            
+            'consent': 'required',
         },
         messages: {
             // custom error messages if needed
-            
+            'consent': showToastAlert('Alert','Please accept the terms and conditions.'),
         },
         errorClass: 'is-invalid',
         validClass: 'is-valid',
@@ -317,6 +325,28 @@ function getCSRFToken() {
     // Function to show a toast message
 function showToast(message, bodyContent) {
     toastr.success(bodyContent, message, {
+      positionClass: "toast-top-right",
+      timeOut: 5e3,
+      closeButton: !0,
+      debug: !1,
+      newestOnTop: !0,
+      progressBar: !0,
+      preventDuplicates: !0,
+      onclick: null,
+      showDuration: "300",
+      hideDuration: "1000",
+      extendedTimeOut: "1000",
+      showEasing: "swing",
+      hideEasing: "linear",
+      showMethod: "fadeIn",
+      hideMethod: "fadeOut",
+      tapToDismiss: !1
+  })
+
+}
+
+function showToastAlert(message, bodyContent) {
+    toastr.warning(bodyContent, message, {
       positionClass: "toast-top-right",
       timeOut: 5e3,
       closeButton: !0,
