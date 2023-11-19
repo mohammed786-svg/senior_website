@@ -28,11 +28,11 @@
 </div> {% endcomment %}
 
 <section
-class="ftco-section-3 img"
+class="ftco-section-3 img m-0"
 
 >
 
-<div class="card card-profile shadow m-5">
+<div class="card card-profile shadow m-1">
   <div class="card-body">
 <div class="container">
   <div class="row d-md-flex">
@@ -42,9 +42,9 @@ class="ftco-section-3 img"
         style="background-image: url('{% static "images/bg_4.jpg" %}')"
       ></div>
     </div> {% endcomment %}
-    <div class="col volunteer  ftco-animate">
+    <div class="col volunteer pl-md-5 ftco-animate">
       <h3 class="mb-4 text-muted">Register as Senior Citizen</h3>
-      <form id="register-form" method="post" class="volunter-form">
+      <form id="register-form" method="post" >
         {% csrf_token %}
       
       <div class="pl-lg-4">
