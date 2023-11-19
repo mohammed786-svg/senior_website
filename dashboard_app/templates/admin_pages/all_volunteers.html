@@ -53,6 +53,30 @@
                 </button>
               </div>
               {% else %}
+              <div class="row m-2">
+
+                <div class="ms-2 col-lg-8 ">
+                  <form method="get">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input
+                            class="form-control form-control-alternative"
+                            type="search"
+                            id="volunteer-search"
+                            name="volunteer_search"
+                            placeholder="Search Volunteer by Name/Mobile Number"
+                            value=""
+                            autocomplete="off"
+                            
+                        />
+                    </div>
+                </form>
+                </div>
+  
+                
+  
+                
+                </div>
               <tbody>
                 {% for row in query_result %}
                 <tr>
@@ -177,7 +201,7 @@
             
           </div>
 
-          <div class="card-footer py-4">
+          {% comment %} <div class="card-footer py-4">
             <nav aria-label="...">
               <ul class="pagination justify-content-end mb-0">
                 <li class="page-item disabled">
@@ -203,7 +227,7 @@
                 </li>
               </ul>
             </nav>
-          </div>
+          </div> {% endcomment %}
           {% endif %}
         </div>
       </div>
@@ -211,4 +235,26 @@
   </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#volunteer-search').on('input', function() {
+        var searchText = $(this).val().toLowerCase();
+
+        $('tbody tr').each(function() {
+            var volunteerName = $(this).find('td:eq(0)').text().toLowerCase();
+            var mobileNumber = $(this).find('td:eq(2)').text().toLowerCase();
+            
+            if (volunteerName.includes(searchText) || mobileNumber.includes(searchText)) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+});
+
+</script>
 {% endblock %}
