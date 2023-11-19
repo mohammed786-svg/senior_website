@@ -340,7 +340,7 @@ $.validator.addMethod('validIndianPhoneNumber', function(value, element) {
                 success: function (response) {
                    
                    if (response.message === 'Senior citizen created successfully') {
-                    
+                    console.log('response.message::'+response.message);
                     showToast('Success','Senior Citizen Registered Successfully');
 
                     // Redirect to home page 
@@ -361,24 +361,24 @@ $.validator.addMethod('validIndianPhoneNumber', function(value, element) {
 
     // Function to show a toast message
 function showToast(message, bodyContent) {
-    toastr.success(bodyContent, message, {
-      positionClass: "toast-top-right",
-      timeOut: 5e3,
-      closeButton: !0,
-      debug: !1,
-      newestOnTop: !0,
-      progressBar: !0,
-      preventDuplicates: !0,
-      onclick: null,
-      showDuration: "300",
-      hideDuration: "1000",
-      extendedTimeOut: "1000",
-      showEasing: "swing",
-      hideEasing: "linear",
-      showMethod: "fadeIn",
-      hideMethod: "fadeOut",
-      tapToDismiss: !1
-  })
+  toastr.success(bodyContent, "Top Center", {
+    positionClass: "toast-top-center",
+    timeOut: 5e3,
+    closeButton: !0,
+    debug: !1,
+    newestOnTop: !0,
+    progressBar: !0,
+    preventDuplicates: !0,
+    onclick: null,
+    showDuration: "300",
+    hideDuration: "1000",
+    extendedTimeOut: "1000",
+    showEasing: "swing",
+    hideEasing: "linear",
+    showMethod: "fadeIn",
+    hideMethod: "fadeOut",
+    tapToDismiss: !1
+})
 
 }
 
