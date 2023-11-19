@@ -34,6 +34,31 @@
                 <strong>Info!</strong> {{error_msg}}
               </div>
               {% else %}
+              <div class="row ms-2">
+
+                <div class="col-lg-8">
+                  <form method="get">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input
+                            class="form-control form-control-alternative"
+                            type="search"
+                            id="customer-search"
+                            name="customer_search"
+                            placeholder="Search Customer by Name/Mobile Number"
+                            value=""
+                            autocomplete="off"
+                            
+                        />
+                    </div>
+                </form>
+                </div>
+  
+                
+  
+                
+                </div>
+              </div>
           <div class="table-responsive">
             
             <table class="table align-items-center table-flush">
@@ -41,9 +66,10 @@
                 <tr>
                   <th scope="col">Name</th>
                   <th scope="col">Address</th>
+                  <th scope="col">Primary Number</th>
                   <th scope="col">Whatsapp Number</th>
-                  <th scope="col">Current Volunteer</th>
-                  <th scope="col">Completion Status</th>
+                  {% comment %} <th scope="col">Current Volunteer</th>
+                  <th scope="col">Completion Status</th> {% endcomment %}
                   <th scope="col"></th>
                 </tr>
               </thead>
@@ -65,9 +91,10 @@
                     </div>
                   </th>
                   <td>{{ row.address }}</td>
+                  <td>{{ row.primary_mobno }}</td>
                   <td>{{ row.whatsapp_no }}</td>
 
-                  <td class="text-center">
+                  {% comment %} <td class="text-center">
                     <div class="avatar-group">
                       <a
                         href="#"
@@ -100,6 +127,7 @@
                       </div>
                     </div>
                   </td>
+                   {% endcomment %}
                   <td class="text-right">
                     <div class="dropdown">
                       <a
@@ -195,7 +223,7 @@
             
           </div>
 
-          <div class="card-footer py-4">
+          {% comment %} <div class="card-footer py-4">
             <nav aria-label="...">
               <ul class="pagination justify-content-end mb-0">
                 <li class="page-item disabled">
@@ -221,7 +249,7 @@
                 </li>
               </ul>
             </nav>
-          </div>
+          </div> {% endcomment %}
           {% endif %}
         </div>
       </div>
@@ -229,4 +257,36 @@
   </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#customer-search').on('input', function() {
+        var searchText = $(this).val().toLowerCase();
+        var found = false;
+
+        // Loop through each table row
+        $('tbody tr').each(function() {
+            var customerName = $(this).find('td:eq(0)').text().toLowerCase();
+            var primaryNumber = $(this).find('td:eq(2)').text().toLowerCase();
+            
+            // Check if the search text matches customer name or primary number
+            if (customerName.includes(searchText) || primaryNumber.includes(searchText)) {
+                $(this).show(); // Show the row if it matches
+                found = true;
+            } else {
+                $(this).hide(); // Hide the row if it doesn't match
+            }
+        });
+
+        if (!found) {
+            $('#customer-not-found').show(); // Show the "Customer not found" label
+        } else {
+            $('#customer-not-found').hide(); // Hide the label if results are found
+        }
+    });
+});
+
+</script>
 {% endblock %}
