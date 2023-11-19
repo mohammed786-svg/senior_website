@@ -17,11 +17,14 @@ import uuid
 import mimetypes
 import time
 import threading
+import json
+from geopy.geocoders import Nominatim
 
 #Add all views here.
 # Create your views here.
 def index(request):
     current_url = request.get_full_path()
+    get_location_hierarchy("India")
     return render(request,"index.html",{'current_url': current_url})
 
 def inbound(request):
@@ -89,29 +92,46 @@ def volunteer(request):
 def register_senior_citizen(request):
     current_url = request.get_full_path()
     if request.method == "POST":
-        uname = request.POST.get('fullname')
-        primary_mobno = request.POST.get('primaryno')
-        whatsapp_no = request.POST.get('whatsappno')
-        age = request.POST.get('age')
-        gender = request.POST.get('gender')
-        address = request.POST.get('fulladdress')
-        country = request.POST.get('country')
-        state = request.POST.get('state')
-        district = request.POST.get('district')
-        taluk = request.POST.get('taluk')
-        pincode = request.POST.get('pincode')
-        city = request.POST.get('city')  
-        land_mark = request.POST.get('landmark')
-        date_of_birth = request.POST.get('dateofbirth')
-        queries = request.POST.get('questions')
-        if not queries:
-            queries = 'No queries'
-        errors = []
-        if not uname:
-            errors.append('Full Name is required.')
-        if errors:
-            # If there are validation errors, render the form with error messages
-            return render(request, 'admin_pages/add_senior_citizen.html', {'errors': errors})
+        jdict = json.loads(request.body)
+        uname = jdict['fullname']
+        primary_mobno = jdict['primaryno']
+        whatsapp_no = jdict['whatsappno']
+        age = jdict['age']
+        gender = jdict['gender']
+        address = jdict['fulladdress']
+        country = jdict['country']
+        state = jdict['state']
+        district = jdict['district']
+        taluk = jdict['taluk']
+        pincode = jdict['pincode']
+        city = jdict['city']
+        land_mark = jdict['landmark']
+        date_of_birth = jdict['dateofbirth']
+        queries = jdict['questions']
+    # if request.method == "POST":
+    #     uname = request.POST.get('fullname')
+    #     primary_mobno = request.POST.get('primaryno')
+    #     whatsapp_no = request.POST.get('whatsappno')
+    #     age = request.POST.get('age')
+    #     gender = request.POST.get('gender')
+    #     address = request.POST.get('fulladdress')
+    #     country = request.POST.get('country')
+    #     state = request.POST.get('state')
+    #     district = request.POST.get('district')
+    #     taluk = request.POST.get('taluk')
+    #     pincode = request.POST.get('pincode')
+    #     city = request.POST.get('city')  
+    #     land_mark = request.POST.get('landmark')
+    #     date_of_birth = request.POST.get('dateofbirth')
+    #     queries = request.POST.get('questions')
+    #     if not queries:
+    #         queries = 'No queries'
+    #     errors = []
+    #     if not uname:
+    #         errors.append('Full Name is required.')
+    #     if errors:
+    #         # If there are validation errors, render the form with error messages
+    #         return render(request, 'admin_pages/add_senior_citizen.html', {'errors': errors})
         
         try:
             with connection.cursor() as cursor:
@@ -143,5 +163,35 @@ def register_senior_citizen(request):
 def donate(request):
     current_url = request.get_full_path()
     return render(request,"donate.html",{'current_url': current_url})
+
+def get_location_hierarchy(country_name):
+    geolocator = Nominatim(user_agent="geoapiExercises")
+    
+    # Fetch country details
+    country_data = geolocator.geocode(country_name, exactly_one=True)
+    
+    if country_data:
+        # Get the country code
+        country_code = country_data.raw.get('display_name', '').split(', ')[-1]
+        
+        # Fetch states
+        states = geolocator.geocode(country_code, exactly_one=True, featuretype="state")
+        print("States in", country_name)
+        print(states)
+
+        # Fetch districts
+        districts = geolocator.geocode(country_code, exactly_one=True, featuretype="district")
+        print("Districts in", country_name)
+        print(districts)
+
+        # Fetch cities
+        cities = geolocator.geocode(country_code, exactly_one=True, featuretype="city")
+        print("Cities in", country_name)
+        print(cities)
+
+        # Fetch taluks (if available)
+        taluks = geolocator.geocode(country_code, exactly_one=True, featuretype="taluks")
+        print("Taluks in", country_name)
+        print(taluks)
 
 
