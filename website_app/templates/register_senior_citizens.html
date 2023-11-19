@@ -256,6 +256,10 @@ $.validator.addMethod('validIndianPhoneNumber', function(value, element) {
               validIndianPhoneNumber: 'Please enter a valid 10-digit Indian phone number.',
           },
         },
+        // Trigger validation on keyup event
+        onkeyup: function(element) {
+          $(element).valid();
+      },
         errorClass: 'is-invalid',
         validClass: 'is-valid',
         errorElement: 'div', // Use a custom error element, e.g., div
