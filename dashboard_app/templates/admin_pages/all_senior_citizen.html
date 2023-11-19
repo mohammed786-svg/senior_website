@@ -58,7 +58,7 @@
   
                 
                 </div>
-              </div>
+              
           <div class="table-responsive">
             
             <table class="table align-items-center table-flush">
@@ -263,30 +263,31 @@
 <script>
   $(document).ready(function() {
     $('#customer-search').on('input', function() {
-        var searchText = $(this).val().toLowerCase();
+        var searchText = $(this).val().toLowerCase(); // Convert search text to lowercase
+        
         var found = false;
 
-        // Loop through each table row
         $('tbody tr').each(function() {
-            var customerName = $(this).find('td:eq(0)').text().toLowerCase();
+            var customerName = $(this).find('td:eq(0)').text().toLowerCase(); // Convert table cell text to lowercase
             var primaryNumber = $(this).find('td:eq(2)').text().toLowerCase();
             
-            // Check if the search text matches customer name or primary number
+            // Check if the lowercase search text matches lowercase customer name or primary number
             if (customerName.includes(searchText) || primaryNumber.includes(searchText)) {
-                $(this).show(); // Show the row if it matches
+                $(this).show();
                 found = true;
             } else {
-                $(this).hide(); // Hide the row if it doesn't match
+                $(this).hide();
             }
         });
 
         if (!found) {
-            $('#customer-not-found').show(); // Show the "Customer not found" label
+            $('#customer-not-found').show();
         } else {
-            $('#customer-not-found').hide(); // Hide the label if results are found
+            $('#customer-not-found').hide();
         }
     });
 });
+
 
 </script>
 {% endblock %}
