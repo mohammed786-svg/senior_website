@@ -189,46 +189,160 @@ style="background-image: url('{% static "images/about-us.jpg" %}')"
 </section>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#volunteer-form').submit(function (e) {
-            e.preventDefault(); // Prevent the form from submitting normally
+    // Get the CSRF token from the cookie
+function getCSRFToken() {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith("csrftoken=")) {
+            return cookie.substring("csrftoken=".length, cookie.length);
+        }
+    }
+    return null;
+}
 
-            // Validate the form using Bootstrap classes
-            if (this.checkValidity() === false) {
-                e.stopPropagation();
-            } else {
-                // Serialize form data into JSON
-                var formData = $(this).serialize();
+    $('#register-form').validate({
+        rules: {
+            'input-fullname':'required',
+            'input-primary-contact':'required',
+            'date-of-birth':'required',
+            'input-gender':'required',
+            'input-whatsapp':'required',
+            'input-address':'required',
+            'input-country':'required',
+            'input-state':'required',
+            'input-city':'required',
+            'input-postal-code':'required',
+            'input-district':'required',
+            'input-taluk':'required',
+            'input-landmark':'required',
+            
+        },
+        messages: {
+            // custom error messages if needed
+            
+        },
+        errorClass: 'is-invalid',
+        validClass: 'is-valid',
+        errorElement: 'div', // Use a custom error element, e.g., div
+        errorPlacement: function(error, element) {
+            // Handle error placement as needed
+            // You can add error messages where you prefer
+            // Example: error.appendTo(element.parent());
+        },
+        highlight: function(element, errorClass, validClass) {
+            // Highlight the field with missing input
+            // Remove valid class and add invalid class
+            $(element).removeClass(validClass).addClass(errorClass);
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            // Unhighlight the field with valid input
+            // Remove invalid class and add valid class
+            $(element).removeClass(errorClass).addClass(validClass);
+        },
+        submitHandler: function(form) {
+            // When the form is valid, handle the form submission here
+            event.preventDefault();
+          
+        //     var selected_customer_id = document.getElementById("selected-customer-id");
+        // var customer_name_input = document.getElementById("customer-name");
+        // var date_of_delivery = document.getElementById('date-of-delivery').value.trim();
+        // var add_information = $("#additional_info").val();
+    
+        
+    
+            // Create a JSON object with the form data
+            const dictMap = {
+                'fullname': fullname,
+                'primaryno' : primaryno,
+                'whatsappno': whatsappno,
+                'age': age,
+                'gender': gender,
+                'fulladdress': fulladdress,
+                'country': country,
+                'state': state,
+                'district': district,
+                'taluk': taluk,
+                'pincode': pincode,
+                'city': city,
+                'landmark': landmark,
+                'dateofbirth': dateofbirth,
+                'questions':questions
+                // Add other form fields to the JSON object
+            };
+            console.log('dictMap::'+JSON.stringify(dictMap));
+          
+            
+            // Perform an AJAX POST request
+            
+            const csrfToken = getCSRFToken();
+            $.ajax({
+                type: 'POST',
+                url: '/register_senior_citizen/', 
+                data: JSON.stringify(dictMap),
+            headers: {
+                'X-CSRFToken': csrfToken  // Include the CSRF token in the headers
+            },
+            contentType: 'application/json',
+                success: function (response) {
+                   
+                   if (response.message === 'Senior citizen created successfully') {
+                    
+                    showToast('Success','Senior Citizen Registered Successfully');
 
-                // AJAX request to send form data
-                $.ajax({
-                    url: '/register_senior_citizen/', // Replace with your Django endpoint URL
-                    type: 'POST',
-                    data: formData,
-                    success: function (response) {
-                        if (response.message === 'Senior citizen created successfully') {
-                            // Show Bootstrap Toast upon success
-                            $('#success-toast').toast('show');
-
-                            // Redirect to home page or perform other actions if needed
-                            setTimeout(function () {
-                                window.location.href = '/home'; // Replace with your home page URL or other actions
-                            }, 3000); // Redirect after 3 seconds (adjust as needed)
-                        }
-                    },
-                    error: function (error) {
-                        console.error('Error:', error);
-                        // Handle error if needed
-                    }
-                });
-            }
-
-            // Bootstrap validation classes
-            $(this).addClass('was-validated');
-        });
+                    // Redirect to home page 
+                    window.location.replace('/home');
+                }
+    
+                   
+                },
+                error: function (error) {
+                    console.error('Error:', error);
+                }
+            });
+        
+            
+        }
     });
+
+
+    // Function to show a toast message
+function showToast(message, bodyContent) {
+    toastr.success(bodyContent, message, {
+      positionClass: "toast-top-right",
+      timeOut: 5e3,
+      closeButton: !0,
+      debug: !1,
+      newestOnTop: !0,
+      progressBar: !0,
+      preventDuplicates: !0,
+      onclick: null,
+      showDuration: "300",
+      hideDuration: "1000",
+      extendedTimeOut: "1000",
+      showEasing: "swing",
+      hideEasing: "linear",
+      showMethod: "fadeIn",
+      hideMethod: "fadeOut",
+      tapToDismiss: !1
+  })
+      // Get the toast element and its content
+      /*var toastElement = document.getElementById("liveToast");
+      var toastBody = toastElement.querySelector(".toast-body");
+  
+      // Update the toast content with the provided message and body content
+      toastBody.textContent = bodyContent;
+  
+      // Show the toast
+      var toast = new bootstrap.Toast(toastElement);
+      toast.show();*/
+  }
+  
+  
 </script>
+
 <script>
     //Calculate Age when dob is selected
 document.addEventListener('DOMContentLoaded', function () {
