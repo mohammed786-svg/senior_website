@@ -236,7 +236,7 @@ function getCSRFToken() {
         },
         messages: {
             // custom error messages if needed
-            'fullname': 'Please provide full name.',
+            'fullname': 'Please provide full.',
             'consent': 'Please accept the terms and conditions.',
         },
         errorClass: 'is-invalid',
@@ -251,18 +251,18 @@ function getCSRFToken() {
         highlight: function(element, errorClass, validClass) {
             // Highlight the field with missing input
             // Remove valid class and add invalid class
-            //$(element).removeClass(validClass).addClass(errorClass);
-            $(element).closest('.form-group').removeClass('is-valid').addClass('is-invalid');
+            $(element).removeClass(validClass).addClass(errorClass);
+            //$(element).closest('.form-group').removeClass('is-valid').addClass('is-invalid');
         },
         unhighlight: function(element, errorClass, validClass) {
             // Unhighlight the field with valid input
             // Remove invalid class and add valid class
-            //$(element).removeClass(errorClass).addClass(validClass);
-            $(element).closest('.form-group').removeClass('is-invalid').addClass('is-valid');
+            $(element).removeClass(errorClass).addClass(validClass);
+            //$(element).closest('.form-group').removeClass('is-invalid').addClass('is-valid');
         },
         submitHandler: function(form) {
             // When the form is valid, handle the form submission here
-           // event.preventDefault();
+            event.preventDefault();
           
         //     var selected_customer_id = document.getElementById("selected-customer-id");
         // var customer_name_input = document.getElementById("customer-name");
