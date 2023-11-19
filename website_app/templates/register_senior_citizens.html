@@ -42,7 +42,7 @@ style="background-image: url('{% static "images/about-us.jpg" %}')"
     </div> {% endcomment %}
     <div class="col volunteer pl-md-5 ftco-animate text-white">
       <h3 class="mb-3">Register Senior Citizen Data</h3>
-      <form id="register-form" method="post" class="volunter-form">
+      <form id="register-form" method="post" >
         {% csrf_token %}
       
       <div class="pl-lg-4">
@@ -190,6 +190,7 @@ style="background-image: url('{% static "images/about-us.jpg" %}')"
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
 <script>
     // Get the CSRF token from the cookie
 function getCSRFToken() {
