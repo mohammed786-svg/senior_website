@@ -52,7 +52,7 @@ class="ftco-section-3 img"
           <div class="col-lg-6">
             <div class="form-group">
               <label class="form-control-label" for="input-fullname">Full Name</label>
-              <input type="text" id="input-fullname" class="form-control form-control-alternative" placeholder="Enter full name" name="fullname" autocomplete="off" value="{{ data.fullname|default:'' }}"  >
+              <input type="text" id="input-fullname" class="form-control form-control-alternative" placeholder="Enter full name" name="fullname" autocomplete="off" value="{{ data.fullname|default:'' }}"  required>
             </div>
           </div>
 
@@ -219,7 +219,7 @@ function getCSRFToken() {
 
     $('#register-form').validate({
         rules: {
-            'input-fullname':'required',
+            'fullname':'required',
             'input-primary-contact':'required',
             'date-of-birth':'required',
             'input-gender':'required',
