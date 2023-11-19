@@ -1,0 +1,322 @@
+{% extends 'admin_pages/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="main-content">
+   
+    
+    <!-- Page content -->
+    <div class="container-fluid mt-2 mb-4">
+        <a
+        class="h4 mb-0 text-primary text-uppercase d-none d-lg-inline-block mb-4 mt-2"
+        href="">
+        {% if data %}
+        Update Volunteer Details
+        {% else %}
+        Add New Volunteer Details
+        {% endif %}
+    </a>
+    {% comment %} <pre class="text-primary ">{{data}}</pre> {% endcomment %}
+        <div class="card card-profile shadow">
+        <div class="card-body">
+    <form method="post" >
+        {% csrf_token %}
+      <h6 class="heading-small text-muted mb-4">Volunteer Information</h6>
+      
+      <div class="pl-lg-4">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label" for="input-how-much-time">How much time will you be able to volunteer</label>
+              <select class="form-control form-control-alternative" id="input-how-much-time" name="how_much_time_weekly"  required>
+                <option value="8-10 hours/week" {% if data.work_hrs == '10-20 hours/week' %}selected{% endif %}>8-10 hours/week</option>
+                <option value="10-20 hours/week" {% if data.work_hrs == '10-20 hours/week' %}selected{% endif %}>10-20 hours/week</option>
+                <option value="Full-time (Mon-Sat)" {% if data.work_hrs == 'Full-time (Mon - Sat)' %}selected{% endif %}>Full-time (Mon - Sat)</option>
+                <option value="Sundays and National holidays" {% if data.work_hrs == 'Sundays and National holidays' %}selected{% endif %}>Sundays and National holidays</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label" for="input-fullname">Full Name</label>
+              <input type="text" id="input-fullname" class="form-control form-control-alternative" placeholder="Enter full name" name="fullname" autocomplete="off" value="{{ data.volunteer_name|default:'' }}"  required>
+            </div>
+          </div>
+          
+          <div class="col-lg-3">
+            <div class="form-group">
+                <label for="date-of-birth" class="form-control-label">Date of Birth</label>
+                <input class="form-control form-control-alternative" type="date"  id="date-of-birth" name="dateofbirth" value="{{ data.dateofbirth|date:'Y-m-d' }}" required>
+            </div>
+          </div>
+          
+          <div class="col-lg-3">
+            <div class="form-group">
+              <label class="form-control-label" for="input-age">Age</label>
+              <input type="number" id="input-age" class="form-control form-control-alternative" placeholder="Enter Age Here" name="age" value="{{ data.age|default:'' }}"  required>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="form-group">
+              <label class="form-control-label" for="input-gender">Gender</label>
+              
+              <select class="form-control form-control-alternative" id="input-gender" name="gender" required>
+                <option value="Male"  {% if data.gender == 'Male' %}selected{% endif %}>Male</option>
+                <option value="Female" {% if data.gender == 'Female' %}selected{% endif %}>Female</option>
+                <option value="Other" {% if data.gender == 'Other' %}selected{% endif %}>Other</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="col-lg-3">
+            <div class="form-group">
+              <label class="form-control-label" for="input-primary-contact">Primary Contact Number</label>
+              <input type="number" id="input-primary-contact" class="form-control form-control-alternative" placeholder="Enter primary contact number" name="primaryno" value="{{ data.mobno|default:'' }}"  required>
+            </div>
+          </div>
+          
+
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label" for="input-whatsapp">Whatsapp Number</label>
+              <input type="number" id="input-whatsapp" class="form-control form-control-alternative" placeholder="Active Whatsapp Number" name="whatsappno" value="{{ data.whatsappno|default:'' }}"  required>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label for="operate-select" class="form-control-label">Do you own/operate any of these</label>
+              <select  class="form-control form-control-alternative" id="operate-select" name="operate"  required>
+                <option value="Grocery" {% if data.operate_any == 'Grocery' %}selected{% endif %}>Grocery</option>
+                <option value="Pharmacy"{% if data.operate_any == 'Pharmacy' %}selected{% endif %} >Pharmacy</option>
+                <option value="Fruits Store" {% if data.operate_any == 'Fruits Store' %}selected{% endif %}>Fruits Store</option>
+                <option value="Vegetable Store" {% if data.operate_any == 'Vegetable Store' %}selected{% endif %}>Vegetable Store</option>
+                <option value="Milk and Dairy" {% if data.operate_any == 'Milk and Dairy' %}selected{% endif %}>Milk and Dairy</option>
+                <option value="General Store" {% if data.operate_any == 'General Store' %}selected{% endif %}>General Store</option>
+                <option value="Sweet mart" {% if data.operate_any == 'Sweet mart' %}selected{% endif %}>Sweet mart</option>
+                <option value="Restaurant" {% if data.operate_any == 'Restaurant' %}selected{% endif %}>Restaurant</option>
+                <option value="Clinic" {% if data.operate_any == 'Clinic' %}selected{% endif %}>Clinic</option>
+                <option value="Lab" {% if data.operate_any == 'Lab' %}selected{% endif %}>Lab</option>
+                <option value="No" {% if data.operate_any == 'No' %}selected{% endif %}>No</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label for="skills-select" class="form-control-label">Skills</label>
+              <select class="form-control form-control-alternative" id="skills-select" name="skillname" onchange="toggleOtherSkillInput()" value="{{data.skill_name|default:'' }} ">
+                <option value="">Select a skill</option>
+                <option value="Other" {% if data.skill_name == 'Other' %}selected{% endif %}>Other</option>
+                <!-- Add other skill options -->
+                <option value="Graphics / Video making" {% if data.skill_name == 'Graphics / Video making' %}selected{% endif %}>Graphics / Video making</option>
+                <option value="Telephone handling" {% if data.skill_name == 'Telephone handling' %}selected{% endif %}>Telephone handling</option>
+                <option value="On-ground support" {% if data.skill_name == 'On-ground support' %}selected{% endif %}>On-ground support</option>
+                <option value="Event support" {% if data.skill_name == 'Event support' %}selected{% endif %}>Event support</option>
+                <option value="Fund raising" {% if data.skill_name == 'Fund raising' %}selected{% endif %}>Fund raising</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="col-lg-6" id="other-skill" style="display: none;">
+            <div class="form-group">
+              <label class="form-control-label" for="input-other-skill">Other Skill</label>
+              <input type="text" id="input-other-skill" class="form-control form-control-alternative" placeholder="Any Other Skills" name="otherskill" value="{{ data.skillname|default:'' }}" >
+            </div>
+          </div>
+          
+          
+          
+
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label for="operate-select" class="form-control-label">Can you drive?</label>
+            <select  class="form-control form-control-alternative" id="operate-select" name="candrive">
+              <option value="2-wheeler" {% if data.can_drive == '2-wheeler' %}selected{% endif %}>2-wheeler</option>
+              <option value="4-wheeler" {% if data.can_drive == '4-wheeler' %}selected{% endif %}>4-wheeler</option>
+              <option value="No" {% if data.can_drive == 'No' %}selected{% endif %}>No</option>
+              
+            </select>
+          </div>
+        </div>
+
+       
+        <div class="col-lg-6">
+        <div class="form-group">
+          <label for="time-input" class="form-control-label">Timing for Volunteering</label>
+          {% with time_parts=data.work_timing|slice:":5" %}
+            <input class="form-control" type="time" id="time-input" name="worktiming" value="{{ time_parts }}" required>
+        {% endwith %}
+          {% comment %} <input class="form-control" type="time" value="" id="time-input" name="worktiming" value="{{ data.work_timing|default:'' }}" required> {% endcomment %}
+      </div>
+   
+    </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+           <div class="form-group">
+             <label for="skills-select" class="form-control-label">Volunteering Days</label>
+             <select multiple class="form-control form-control-alternative" id="skills-select" name="workdays"  required>
+              {% for day in all_days %}
+              <option value="{{ day }}" {% if day in data.work_days %}selected{% endif %}>{{ day }}</option>
+            {% endfor %}
+             </select>
+           </div>
+         </div>
+
+         <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-other-notes">Other Notes</label>
+            <input type="text" id="input-other-notes" class="form-control form-control-alternative" placeholder="Any Other Notes About you" name="othernotes" value="{{ data.othernotes|default:'' }}"  required>
+          </div>
+         </div>
+   </div>
+
+      </div>
+      <hr class="my-4" />
+      <!-- Address -->
+      <h6 class="heading-small text-muted mb-4">Contact information</h6>
+      <div class="pl-lg-4">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="form-group">
+              <label class="form-control-label" for="input-address">Address</label>
+              <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address"  type="text" name="fulladdress" value="{{ data.address|default:'' }}"  required>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label class="form-control-label" for="input-country">Country</label>
+              <select class="form-control form-control-alternative" id="input-country" name="country" >
+                {% for country in country_data %}
+                <option value="{{ country.country_id }}">{{ country.country_name }}</option>
+              {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label class="form-control-label" for="input-state">State</label>
+                <select class="form-control form-control-alternative" id="input-state" name="state">
+                  {% for state in state_data %}
+                  <option value="{{ state.state_id }}">{{ state.state_name }}</option>
+                {% endfor %}
+                </select>
+              </div>
+            </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label class="form-control-label" for="input-city">City</label>
+              <select class="form-control form-control-alternative" id="input-city" name="city">
+                {% for city in city_data %}
+                  <option value="{{ city.city_id }}">{{ city.city_name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label class="form-control-label" for="input-country">Postal code</label>
+              <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code" name="pincode" value="{{ data.pincode|default:'' }}"  required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label class="form-control-label" for="input-district">District</label>
+                <select class="form-control form-control-alternative" id="input-district" name="district">
+                  {% for district in district_data %}
+                  <option value="{{ district.district_id }}">{{ district.district_name }}</option>
+                {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-taluk">Taluk</label>
+                  <select class="form-control form-control-alternative" id="input-taluk" name="taluk">
+                    {% for taluk in taluk_data %}
+                  <option value="{{ taluk.taluk_id }}">{{ taluk.taluk_name }}</option>
+                {% endfor %}
+                  </select>
+                </div>
+              </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-landmark">Nearest Landmark</label>
+                  <input id="input-landmark" class="form-control form-control-alternative" placeholder="Nearest landmark like car showroom,etc"  type="text" name="landmark" value="{{ data.landmark|default:'' }}"  required>
+                </div>
+              </div>
+          </div>
+          
+      </div>
+      <hr class="my-4" />
+      <!-- Description -->
+      <h6 class="heading-small text-muted mb-4">Any Query</h6>
+      <div class="pl-lg-4">
+        <div class="form-group">
+          <label>Anything else you would like to tell us about yourself?
+          </label>
+          <textarea rows="4" class="form-control form-control-alternative" placeholder="write a few words about yourself..." name="about_me" >{{ data.about_me|default:'' }}</textarea>
+        </div>
+      </div>
+
+      <div class="row justify-content-end p-4 mt--1">
+        {% if data %}
+        <button type="submit" class="btn btn-primary my-4">Update Volunteer</button>
+        {% else %}
+        <button type="submit" class="btn btn-primary my-4">Add New Volunteer</button>
+        {% endif %}
+        
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+    //Calculate Age when dob is selected
+document.addEventListener('DOMContentLoaded', function () {
+    // Get references to the date of birth and age input fields
+    const dateOfBirthInput = document.getElementById('date-of-birth');
+    const ageInput = document.getElementById('input-age');
+
+    // Attach an event listener to the date of birth input field
+    dateOfBirthInput.addEventListener('input', function () {
+        // Get the selected date of birth
+        const dateOfBirth = new Date(dateOfBirthInput.value);
+
+        // Calculate the age
+        const today = new Date();
+        const age = today.getFullYear() - dateOfBirth.getFullYear();
+
+        // Update the age input field with the calculated age
+        ageInput.value = age;
+    });
+});
+
+function toggleOtherSkillInput() {
+  const selectedSkill = document.getElementById("skills-select").value;
+  const otherSkillInput = document.getElementById("other-skill");
+
+  if (selectedSkill === "Other") {
+    otherSkillInput.style.display = "block";
+  } else {
+    otherSkillInput.style.display = "none";
+  }
+}
+
+</script>
+  {% endblock %}

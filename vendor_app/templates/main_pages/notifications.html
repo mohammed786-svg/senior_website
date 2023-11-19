@@ -1,0 +1,108 @@
+{% extends 'main_pages/base.html' %} {% load static %} {% block content %}
+
+<div class="main-content">
+    <div class="container-fluid mt-2">
+
+<div class="row">
+    <div class="col-md-7 mt-4">
+      <div class="card bg-secondary shadow">
+        <div class="card-header pb-0 px-3">
+          <h3 class="mb-0">Notifications</h3>
+        </div>
+        
+        <div class="card-body pt-4 p-3">
+          <ul class="list-group">
+            
+            
+            {% if data %}
+            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                <div class="d-flex flex-column w-100">
+                  <h6 class="mb-3 text-sm">{{data.senior_name}}</h6>
+                  <span class="mb-2 text-xs">Order No: <span class="text-dark font-weight-bold ms-sm-2" >#{{data.service_id}}</span></span>
+                  <span class="mb-2 text-xs">Service Requested: <span class="text-dark ms-sm-2 font-weight-bold">{{data.service_name}}</span></span>
+                  <span class="mb-2 text-xs">Address: <span class="text-dark ms-sm-2 font-weight-bold">{{data.address}}</span></span>
+                  <input type="hidden" id="serviceIdInput" name="service_id" value="{{ data.service_id }}">
+                  
+                </div>
+                
+                <div class="ms-auto text-end">
+                  <a class="btn btn-link text-danger text-gradient px-3 mb-0" href=""><i class="far fa-trash-alt me-3"></i>Reject</a>
+                  <form id="notificationForm" method="POST" onsubmit="updateAction()">
+                    {% csrf_token %}
+                    
+<button type="submit" class="btn btn-link text-success px-3 mb-0"><i class="fa-regular fa-circle-check me-3"></i>Accept</button>
+                    <!-- <a class="btn btn-link text-success px-3 mb-0"  type="submit"><i class="fa-regular fa-circle-check me-3"></i>Accept</a> -->
+                  </form>
+                </div>
+              </li>
+              {% else %}
+             
+              <a class="btn btn-link text-success px-3 mb-0"  type="submit"><i class="fa-solid fa-bell fa-lg m-2"></i>   No New Notification </a>
+              {% endif %}  
+          
+            </ul>
+        </div>
+      </div>
+    </div>
+     <div class="col-md-5 mt-4">
+      <div class="card h-100 mb-4">
+        <div class="card-header pb-0 px-3">
+          <div class="row">
+            <div class="col-md-6">
+              <h3 class="mb-0">Old Notifications</h3>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end align-items-center">
+              <i class="far fa-calendar-alt me-2"></i>
+              <small>{{todayDT}}</small>
+            </div>
+          </div>
+        </div>
+        <div class="card-body pt-4 p-3">
+          {% if  ret_error%}
+          <h6 class="text-uppercase text-body text-xs font-weight-bolder my-3">{{ret_error}}</h6>
+          {% endif %}
+          {% if old_notify%}
+          <h6 class="text-uppercase text-body text-xs font-weight-bolder my-3">Yesterday</h6>
+          <ul class="list-group">
+             
+             
+             <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+              <div class="d-flex align-items-center">
+                <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></button>
+                <div class="d-flex flex-column">
+                  <h6 class="mb-1 text-dark text-sm">Medicine</h6>
+                  <span class="text-xs">26 Oct 2023, at 08:30 AM</span>
+                </div>
+              </div>
+              <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                Delivered
+              </div>
+            </li>
+            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+              <div class="d-flex align-items-center">
+                <button class="btn btn-icon-only btn-rounded btn-outline-dark mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-exclamation"></i></button>
+                <div class="d-flex flex-column">
+                  <h6 class="mb-1 text-dark text-sm">Grocery Delivery</h6>
+                  <span class="text-xs">26 Oct 2023, at 05:00 AM</span>
+                </div>
+              </div>
+              <div class="d-flex align-items-center text-dark text-sm font-weight-bold">
+                Pending
+              </div>
+            </li>
+          </ul>
+          {% endif %}
+        </div>
+      </div>
+    </div> 
+  </div>
+  </div>
+  </div>
+<script>
+  var form = document.getElementById('notificationForm');
+  var serviceId = document.getElementById('serviceIdInput').value;
+  console.log(serviceId);
+  form.action = '{% url "vendor_app:update_notification" service_id=0 %}'.replace('0', serviceId);
+  
+</script>
+  {% endblock %}

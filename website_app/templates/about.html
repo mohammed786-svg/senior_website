@@ -1,0 +1,606 @@
+{% extends "sub_base.html" %}
+{% load static %}
+{% block content%}
+
+<div class="hero-wrap" style="background-image: url('{% static "images/about-us.jpg" %}');" data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+      <div class="col-md-7 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+         <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="{% url 'website_app:index' %}">Home</a></span> <span>About</span></p>
+        <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">About Us</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="ftco-counter ftco-intro" id="section-counter">
+  <div class="container">
+    <div class="row no-gutters">
+      <div
+        class="col-md-5 d-flex justify-content-center counter-wrap ftco-animate"
+      >
+        <div class="block-18 color-1 align-items-stretch">
+          <div class="text">
+            <span>Served Over</span>
+            <strong class="number" data-number="100">0</strong>
+            <span>Senior Citizen in Karnataka</span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-md d-flex justify-content-center counter-wrap ftco-animate"
+      >
+        <div class="block-18 color-2 align-items-stretch">
+          <div class="text">
+            <h3 class="mb-4">Donate Money</h3>
+            <p>
+                Your donation fuels care, companionship, and support for senior citizens. Make a difference today!
+            </p>
+            <p>
+              <a href="#" class="btn btn-white px-3 py-2 mt-2"
+                >Donate Now</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-md d-flex justify-content-center counter-wrap ftco-animate"
+      >
+        <div class="block-18 color-3 align-items-stretch">
+          <div class="text">
+            <h3 class="mb-4">Be a Volunteer</h3>
+            <p>
+                Join us as a volunteer and create lasting positive impacts in the lives of seniors.
+            </p>
+            <p>
+              <a href="#" class="btn btn-white px-3 py-2 mt-2"
+                >Be A Volunteer</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row d-flex">
+      <div class="col-md-6 d-flex ftco-animate">
+        <div class="img img-about align-self-stretch" style="background-image: url('{% static "images/logo_lg.png" %}'); background-size: contain; background-repeat: no-repeat; background-position: center center; width: 100%; height: 100%;"></div>
+      </div>
+      <div class="col-md-6 pl-md-5 ftco-animate">
+        <h2 class="mb-4">Welcome to Senior Seva Helpline</h2>
+        <p>Senior Seva Helpline is a FREE service to the senior citizens of Belagavi city which helps with</p>
+        <div class="tag-widget post-tag-container mb-2">
+          <div class="tagcloud">
+            <a href="{% url 'website_app:aboutus' %}" class="tag-cloud-link">On-boarding for Govt Schemes</a>
+            <a href="{% url 'website_app:aboutus' %}" class="tag-cloud-link">Home Delivery Services</a>
+            <a href="{% url 'website_app:aboutus' %}" class="tag-cloud-link">Healthcare connects thru vendor tie-ups</a>
+            
+          </div>
+        </div>
+        <p class="mt-3">In addition, the Senior Seva Mitra establishes a young buddy tie-up program to provide Companionship & Accompaniment for Elders via</p>
+        <div class="tag-widget post-tag-container">
+          <div class="tagcloud">
+            <a href="{% url 'website_app:aboutus' %}" class="tag-cloud-link">Hiring & training young adults & students to empathize with seniors</a>
+            <a href="{% url 'website_app:aboutus' %}" class="tag-cloud-link">Adopting age-tech tools to efficiently manage service requests </a>
+            <a href="{% url 'website_app:aboutus' %}" class="tag-cloud-link">Facilitating ease-of-use and serviceability via a simple phone call            </a>
+            
+          </div>
+        </div>
+        <p class="mt-3">Built to serve our Senior Citizens, Senior Seva Helpline delivers information & services to help ease their Lifestyles and worries!         </p>
+        <p class="mt-3">Our motto is to provide the elderly easy access to their day-to-day needs and be self-reliant. All these services are made possible by</p>
+        <ul>
+          <li><p>Seva Helpline researching, negotiating and signing MOU with partner organizations so that they provide these services at an affordable price & within the specified TAT</p></li>
+        </ul>
+        <h3 class="mt-3">
+          Community Support
+        </h3>
+        <p class="mt-2">
+          <ul>
+            <li><p>Collaborations with Associations, Corporates, NGOs and Govt agencies to help Spread the word | Reach into semi-urban | Serve the rural population
+            </p></li>
+          </ul>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- <section class="ftco-section bg-light">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-3">
+      <div class="col-md-7 heading-section ftco-animate text-center">
+        <h2 class="mb-4">Latest Donations</h2>
+        <p>
+          Far far away, behind the word mountains, far from the countries
+          Vokalia and Consonantia, there live the blind texts.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 d-flex mb-sm-4 ftco-animate">
+        <div class="staff">
+          <div class="d-flex mb-4">
+            <div
+              class="img"
+              style="background-image: url(images/person_1.jpg)"
+            ></div>
+            <div class="info ml-4">
+              <h3><a href="teacher-single.html">Sam</a></h3>
+              <span class="position">Donated Just now</span>
+              <div class="text">
+                <p>
+                  Donated <span>₹300</span> for
+                  <a href="#">Children Needs Food</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 d-flex mb-sm-4 ftco-animate">
+        <div class="staff">
+          <div class="d-flex mb-4">
+            <div
+              class="img"
+              style="background-image: url(images/person_2.jpg)"
+            ></div>
+            <div class="info ml-4">
+              <h3><a href="teacher-single.html">Sam</a></h3>
+              <span class="position">Donated Just now</span>
+              <div class="text">
+                <p>
+                  Donated <span>₹150</span> for
+                  <a href="#">Children Needs Food</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 d-flex mb-sm-4 ftco-animate">
+        <div class="staff">
+          <div class="d-flex mb-4">
+            <div
+              class="img"
+              style="background-image: url(images/person_3.jpg)"
+            ></div>
+            <div class="info ml-4">
+              <h3><a href="teacher-single.html">Sam</a></h3>
+              <span class="position">Donated Just now</span>
+              <div class="text">
+                <p>
+                  Donated <span>₹250</span> for
+                  <a href="#">Children Needs Food</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section class="ftco-section bg-light">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-3">
+      <div class="col-md-7 heading-section ftco-animate text-center">
+        <h2 class="mb-4">Our Leadership Team</h2>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-4 d-flex ftco-animate">
+        <div class="blog-entry align-self-stretch">
+          <a
+            href=""
+            class="block-20"
+            style="background-image: url('{% static "images/profile" %}')"
+          >
+          </a>
+          <div class="text p-4 d-block">
+           
+            <h3 class="heading mb-1">
+              <a href="#">Poornima Jagtap</a>
+            </h3>
+            <p>
+              <a href=""
+                >Founder </a>
+            </p>
+            <p class="time-loc">
+              <span class="mr-2"
+                ><i class="icon-calendar-o"></i> </span
+              >
+              8 years in running this NGO for Women Empowerment, Skill development & fair-trade practices for artisans at grassroots
+
+            </p>
+            <p class="time-loc">
+              
+              <ul>
+                <li>
+                  <p>Fund-raising, Donor connect</p>
+                </li>
+                <li>
+                  <p>Rural women connect & training leader</p>
+                </li>
+              </ul>
+            </p>
+            <p>
+              <a href=""
+                >Contact Now <i class="ion-ios-arrow-forward"></i
+              ></a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 d-flex ftco-animate">
+        <div class="blog-entry align-self-stretch">
+          <a
+            href=""
+            class="block-20"
+            style="background-image: url('{% static "images/profile" %}')"
+          >
+          </a>
+          <div class="text p-4 d-block">
+           
+            <h3 class="heading mb-1">
+              <a href="#">Nithya Somanath</a>
+            </h3>
+            <p>
+              <a href=""
+                >Helpline Process Head </a>
+            </p>
+            <p class="time-loc">
+              <span class="mr-2"
+                ><i class="icon-calendar-o"></i> </span
+              >
+              Previously established & operated COVID helpline for various City Corporations via Project SetupOne initiative
+
+
+            </p>
+            <p class="time-loc">
+              
+              <ul>
+                <li>
+                  <p>Client coordination</p>
+                </li>
+                <li>
+                  <p>Compliance reporting
+                  </p>
+                </li>
+              </ul>
+            </p>
+            <p>
+              <a href=""
+                >Contact Now <i class="ion-ios-arrow-forward"></i
+              ></a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 d-flex ftco-animate">
+        <div class="blog-entry align-self-stretch">
+          <a
+            href=""
+            class="block-20"
+            style="background-image: url('{% static "images/profile" %}')"
+          >
+          </a>
+          <div class="text p-4 d-block">
+           
+            <h3 class="heading mb-1">
+              <a href="#">Jasmine Moses, MSW</a>
+            </h3>
+            <p>
+              <a href=""
+                >Training Head </a>
+            </p>
+            <p class="time-loc">
+              <span class="mr-2"
+                ><i class="icon-calendar-o"></i> </span
+              >
+              Board member, Agastya Foundation
+
+
+
+            </p>
+            <p class="time-loc">
+              
+              <ul>
+                <li>
+                  <p>Social worker, Skills trainer</p>
+                </li>
+                <li>
+                  <p>Fund-raising & CSR coordinator
+                  </p>
+                </li>
+              </ul>
+            </p>
+            <p>
+              <a href=""
+                >Contact Now <i class="ion-ios-arrow-forward"></i
+              ></a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 d-flex ftco-animate">
+        <div class="blog-entry align-self-stretch">
+          <a
+            href=""
+            class="block-20"
+            style="background-image: url('{% static "images/profile" %}')"
+          >
+          </a>
+          <div class="text p-4 d-block">
+           
+            <h3 class="heading mb-1">
+              <a href="#">Naveen Udoshi</a>
+            </h3>
+            <p>
+              <a href=""
+                >Technical Head </a>
+            </p>
+            <p class="time-loc">
+              <span class="mr-2"
+                ><i class="icon-calendar-o"></i> </span
+              >
+              Founder, NISM Technology & Concept leader
+
+
+
+            </p>
+            <p class="time-loc">
+              
+              <ul>
+                <li>
+                  <p>Marketing & Services enabler</p>
+                </li>
+               
+              </ul>
+            </p>
+            <p>
+              <a href=""
+                >Contact Now <i class="ion-ios-arrow-forward"></i
+              ></a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 d-flex ftco-animate">
+        <div class="blog-entry align-self-stretch">
+          <a
+            href=""
+            class="block-20"
+            style="background-image: url('{% static "images/profile" %}')"
+          >
+          </a>
+          <div class="text p-4 d-block">
+           
+            <h3 class="heading mb-1">
+              <a href="#">Shashikala Koppad, Civil contractor </a>
+            </h3>
+            <p>
+              <a href=""
+                >Volunteers’ Coordinator </a>
+            </p>
+            <p class="time-loc">
+              <span class="mr-2"
+                ><i class="icon-calendar-o"></i> </span
+              >
+              Govt sector Lead
+            </p>
+            <p class="time-loc">
+              
+              <ul>
+                <li>
+                  <p>Vendor & Service coordinator.,</p>
+                </li>
+               
+              </ul>
+            </p>
+            <p>
+              <a href=""
+                >Contact Now <i class="ion-ios-arrow-forward"></i
+              ></a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 d-flex ftco-animate">
+        <div class="blog-entry align-self-stretch">
+          <a
+            href=""
+            class="block-20"
+            style="background-image: url('{% static "images/profile" %}')"
+          >
+          </a>
+          <div class="text p-4 d-block">
+           
+            <h3 class="heading mb-1">
+              <a href="#">Capt. G S Chaddha, Mentor & Sr. citizen </a>
+            </h3>
+            <p>
+              <a href=""
+                >Advisory member(s)</a>
+            </p>
+           
+          </div>
+        </div>
+      </div>
+     
+      <div class="col-md-4 d-flex ftco-animate">
+        <div class="blog-entry align-self-stretch">
+          <a
+            href=""
+            class="block-20"
+            style="background-image: url('{% static "images/profile" %}')"
+          >
+          </a>
+          <div class="text p-4 d-block">
+           
+            <h3 class="heading mb-1">
+              <a href="#">Dr Sudhakar Varanasi, Architect of the 108 Emergency Medical Services </a>
+            </h3>
+            <p>
+              <a href=""
+                >Advisory member(s)</a>
+            </p>
+           
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 d-flex ftco-animate">
+        <div class="blog-entry align-self-stretch">
+          <a
+            href=""
+            class="block-20"
+            style="background-image: url('{% static "images/profile" %}')"
+          >
+          </a>
+          <div class="text p-4 d-block">
+           
+            <h3 class="heading mb-1">
+              <a href="#">Akshay Deshpande, Amar Samal, Mithali, Deepti, Tejashree & 25 volunteers</a>
+            </h3>
+            <p>
+              <a href=""
+                >Change makers Team</a>
+            </p>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row d-flex">
+      
+      <div class="col-md-6 pl-md-5 ftco-animate">
+        <h2 class="mb-4">Our Mission</h2>
+        <p>To help our aging population lead a honorable & stress-free lifestyle
+        </p>
+        
+      </div>
+      <div class="col-md-6 d-flex ftco-animate">
+        <div class="img img-about align-self-stretch" style="background-image: url('{% static "images/mission.webp" %}'); width: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row d-flex">
+      <div class="col-md-6 d-flex ftco-animate">
+        <div class="img img-about align-self-stretch" style="background-image: url('{% static "images/vision.webp" %}'); width: 100%;"></div>
+      </div>
+      <div class="col-md-6 pl-md-5 ftco-animate">
+        <h2 class="mb-4">Our Vision</h2>
+        <p>Touch 15,000 seniors and accomplish 3,000 service requests with partners & volunteer deployments</p>
+        
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+
+<section class="ftco-section ftco-gallery">
+  <div class="container">
+    <div class="d-md-flex">
+      <a href="{% static 'images/jamboti.jpeg' %}" class="gallery image-popup d-flex justify-content-center align-items-center img ftco-animate" 
+      style="background-image: url('{% static "images/jamboti.jpeg" %}');">
+        <div class="icon d-flex justify-content-center align-items-center">
+          <span class="icon-search"></span>
+        </div>
+      </a>
+      <a href="{% static 'images/gallery_1.jpeg' %}" class="gallery image-popup d-flex justify-content-center align-items-center img ftco-animate" 
+      style="background-image: url('{% static "images/gallery_1.jpeg" %}');">
+        <div class="icon d-flex justify-content-center align-items-center">
+          <span class="icon-search"></span>
+        </div>
+      </a>
+      <a href="{% static 'images/gallery_2.jpeg' %}" class="gallery image-popup d-flex justify-content-center align-items-center img ftco-animate" 
+      style="background-image: url('{% static "images/gallery_2.jpeg" %}');">
+        <div class="icon d-flex justify-content-center align-items-center">
+          <span class="icon-search"></span>
+        </div>
+      </a>
+      <a href="{% static 'images/gallery_3.jpeg' %}" class="gallery image-popup d-flex justify-content-center align-items-center img ftco-animate" 
+      style="background-image: url('{% static "images/gallery_3.jpeg" %}');">
+        <div class="icon d-flex justify-content-center align-items-center">
+          <span class="icon-search"></span>
+        </div>
+      </a>
+    </div>
+    <div class="d-md-flex">
+      <a href="{% static 'images/gallery_4.jpeg' %}" class="gallery image-popup d-flex justify-content-center align-items-center img ftco-animate" 
+      style="background-image: url('{% static "images/gallery_4.jpeg" %}');">
+        <div class="icon d-flex justify-content-center align-items-center">
+          <span class="icon-search"></span>
+        </div>
+      </a>
+      <a href="{% static 'images/gallery_5.jpeg' %}" class="gallery image-popup d-flex justify-content-center align-items-center img ftco-animate" 
+      style="background-image: url('{% static "images/gallery_5.jpeg" %}');">
+        <div class="icon d-flex justify-content-center align-items-center">
+          <span class="icon-search"></span>
+        </div>
+      </a>
+      <a href="{% static 'images/gallery_6.jpeg' %}" class="gallery image-popup d-flex justify-content-center align-items-center img ftco-animate" 
+      style="background-image: url('{% static "images/gallery_6.jpeg" %}');">
+        <div class="icon d-flex justify-content-center align-items-center">
+          <span class="icon-search"></span>
+        </div>
+      </a>
+      <a href="{% static 'images/gallery_7.jpeg' %}" class="gallery image-popup d-flex justify-content-center align-items-center img ftco-animate" 
+      style="background-image: url('{% static "images/gallery_7.jpeg" %}');">
+        <div class="icon d-flex justify-content-center align-items-center">
+          <span class="icon-search"></span>
+        </div>
+      </a>
+    </div>
+    <div class="d-md-flex">
+      <a href="{% static 'images/gallery_8.jpeg' %}" class="gallery image-popup d-flex justify-content-center align-items-center img ftco-animate" 
+      style="background-image: url('{% static "images/gallery_8.jpeg" %}');">
+        <div class="icon d-flex justify-content-center align-items-center">
+          <span class="icon-search"></span>
+        </div>
+      </a>
+      <a href="{% static 'images/gallery_9.jpeg' %}" class="gallery image-popup d-flex justify-content-center align-items-center img ftco-animate" 
+      style="background-image: url('{% static "images/gallery_9.jpeg" %}');">
+        <div class="icon d-flex justify-content-center align-items-center">
+          <span class="icon-search"></span>
+        </div>
+      </a>
+      <a href="{% static 'images/gallery_10.jpeg' %}" class="gallery image-popup d-flex justify-content-center align-items-center img ftco-animate" 
+      style="background-image: url('{% static "images/gallery_10.jpeg" %}');">
+        <div class="icon d-flex justify-content-center align-items-center">
+          <span class="icon-search"></span>
+        </div>
+      </a>
+      
+    </div>
+  </div>
+</section>
+
+
+
+
+{% endblock %}

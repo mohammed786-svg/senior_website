@@ -1,0 +1,253 @@
+{% extends "sub_base.html" %}
+{% load static %}
+{% block content%}
+
+<div class="hero-wrap" style="background-image: url('{% static "images/about-us.jpg" %}');" data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+      <div class="col-md-7 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+         <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="{% url 'website_app:index' %}">Home</a></span> <span>Voluteer</span></p>
+        <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Senior Citizen</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %} <!-- Bootstrap Toast structure -->
+<div class="toast" id="success-toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000" >
+    <div class="toast-header">
+        <strong class="mr-auto">Success!</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="toast-body">
+        Senior citizen created successfully!
+    </div>
+</div> {% endcomment %}
+
+<section
+class="ftco-section-3 img"
+style="background-image: url('{% static "images/about-us.jpg" %}')"
+>
+<div class="overlay"></div>
+<div class="container">
+  <div class="row d-md-flex">
+    {% comment %} <div class="col-md-6 d-flex ftco-animate">
+      <div
+        class="img img-2 align-self-stretch"
+        style="background-image: url('{% static "images/bg_4.jpg" %}')"
+      ></div>
+    </div> {% endcomment %}
+    <div class="col volunteer pl-md-5 ftco-animate text-white">
+      <h3 class="mb-3">Register Senior Citizen Data</h3>
+      <form method="post" class="volunter-form">
+        {% csrf_token %}
+      
+      <div class="pl-lg-4">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label text-white" for="input-fullname">Full Name</label>
+              <input type="text" id="input-fullname" class="form-control form-control-alternative" placeholder="Enter full name" name="fullname" autocomplete="off" value="{{ data.fullname|default:'' }}"  required>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label text-white" for="input-primary-contact">Primary Contact Number</label>
+              <input type="number" id="input-primary-contact" class="form-control form-control-alternative" placeholder="Enter primary contact number" name="primaryno" value="{{ data.primaryno|default:'' }}"  required>
+            </div>
+          </div>
+          
+        </div>
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="form-group">
+                <label for="date-of-birth" class="form-control-label text-white">Date of Birth</label>
+                <input class="form-control form-control-alternative" type="date"  id="date-of-birth" name="dateofbirth" value="{{ data.dateofbirth|date:'Y-m-d' }}" required>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="form-group">
+              <label class="form-control-label text-white" for="input-age">Age</label>
+              <input type="number" id="input-age" class="form-control form-control-alternative" placeholder="Enter Age Here" name="age" value="{{ data.age|default:'' }}" >
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="form-group">
+              <label class="form-control-label text-white" for="input-gender">Gender</label>
+              <select class="form-control form-control-alternative" id="input-gender" name="gender">
+                <option value="Male"  {% if data.gender == 'Male' %}selected{% endif %}>Male</option>
+                <option value="Female" {% if data.gender == 'Female' %}selected{% endif %}>Female</option>
+                <option value="Other" {% if data.gender == 'Other' %}selected{% endif %}>Other</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="col-lg-3">
+            <div class="form-group">
+              <label class="form-control-label text-white" for="input-whatsapp">Whatsapp Number</label>
+              <input type="number" id="input-whatsapp" class="form-control form-control-alternative" placeholder="Active Whatsapp Number" name="whatsappno" value="{{ data.whatsappno|default:'' }}"  required>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <hr class="my-4 text-white" />
+      <!-- Address -->
+      <h6 class="heading-small text-white mb-4">Contact information</h6>
+      <div class="pl-lg-4">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="form-group">
+              <label class="form-control-label text-white" for="input-address">Address</label>
+              <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address"  type="text" name="fulladdress" value="{{ data.fulladdress|default:'' }}"  required>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label class="form-control-label text-white" for="input-country">Country</label>
+              <select class="form-control form-control-alternative" id="input-country" name="country" >
+                <option>India</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label class="form-control-label text-white" for="input-state">State</label>
+                <select class="form-control form-control-alternative" id="input-state" name="state">
+                  <option>Karnataka</option>
+                </select>
+              </div>
+            </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label class="form-control-label text-white" for="input-city">City</label>
+              <select class="form-control form-control-alternative" id="input-city" name="city">
+                <option>Belgaum</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label class="form-control-label text-white" for="input-country">Postal code</label>
+              <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code" name="pincode" value="{{ data.pincode|default:'' }}"  required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label class="form-control-label text-white" for="input-district">District</label>
+                <select class="form-control form-control-alternative" id="input-district" name="district">
+                  <option>Belgaum</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label text-white" for="input-taluk">Taluk</label>
+                  <select class="form-control form-control-alternative" id="input-taluk" name="taluk">
+                    <option>Belgaum</option>
+                  </select>
+                </div>
+              </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label text-white" for="input-landmark">Nearest Landmark</label>
+                  <input id="input-landmark" class="form-control form-control-alternative" placeholder="Nearest landmark like car showroom,etc"  type="text" name="landmark" value="{{ data.landmark|default:'' }}"  required>
+                </div>
+              </div>
+          </div>
+          
+      </div>
+      <hr class="my-4 text-white" />
+      <!-- Description -->
+      <h6 class="heading-small text-white mb-4">Any Query</h6>
+      <div class="pl-lg-4">
+        <div class="form-group">
+          <label>Questions ?</label>
+          <textarea rows="4" class="form-control form-control-alternative" placeholder="write a few words if required ..." name="questions" >{{ data.questions|default:'' }}</textarea>
+        </div>
+      </div>
+
+      <div class="row justify-content-end p-4 mt--1">
+        
+        <button type="button" class="btn btn-white my-4">Submit</button>
+        
+        
+      </div>
+    </form>
+    </div>
+    
+  </div>
+</div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#volunteer-form').submit(function (e) {
+            e.preventDefault(); // Prevent the form from submitting normally
+
+            // Validate the form using Bootstrap classes
+            if (this.checkValidity() === false) {
+                e.stopPropagation();
+            } else {
+                // Serialize form data into JSON
+                var formData = $(this).serialize();
+
+                // AJAX request to send form data
+                $.ajax({
+                    url: '/register_senior_citizen/', // Replace with your Django endpoint URL
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        if (response.message === 'Senior citizen created successfully') {
+                            // Show Bootstrap Toast upon success
+                            $('#success-toast').toast('show');
+
+                            // Redirect to home page or perform other actions if needed
+                            setTimeout(function () {
+                                window.location.href = '/home'; // Replace with your home page URL or other actions
+                            }, 3000); // Redirect after 3 seconds (adjust as needed)
+                        }
+                    },
+                    error: function (error) {
+                        console.error('Error:', error);
+                        // Handle error if needed
+                    }
+                });
+            }
+
+            // Bootstrap validation classes
+            $(this).addClass('was-validated');
+        });
+    });
+</script>
+<script>
+    //Calculate Age when dob is selected
+document.addEventListener('DOMContentLoaded', function () {
+    // Get references to the date of birth and age input fields
+    const dateOfBirthInput = document.getElementById('date-of-birth');
+    const ageInput = document.getElementById('input-age');
+
+    // Attach an event listener to the date of birth input field
+    dateOfBirthInput.addEventListener('input', function () {
+        // Get the selected date of birth
+        const dateOfBirth = new Date(dateOfBirthInput.value);
+
+        // Calculate the age
+        const today = new Date();
+        const age = today.getFullYear() - dateOfBirth.getFullYear();
+
+        // Update the age input field with the calculated age
+        ageInput.value = age;
+    });
+});
+</script>
+{% endblock %}

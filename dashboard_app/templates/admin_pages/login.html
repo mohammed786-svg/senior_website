@@ -1,0 +1,197 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>
+    Senior Seva Helpline | Dashboard
+  </title>
+  <!-- Favicon -->
+  <link href="{% static 'img/brand/favicon.png' %}" rel="icon" type="image/png">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <!-- Icons -->
+  <link href="{% static 'js/plugins/nucleo/css/nucleo.css' %}" rel="stylesheet" />
+  <link href="{% static 'js/plugins/@fortawesome/fontawesome-free/css/all.min.css' %}" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link href="{% static 'css/senior-citizen-dashboard.css' %}" type="text/css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/eea5b138cd.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-default">
+  
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{% static 'img/brand/logo.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <div class="main-content">
+    <!-- Navbar -->
+    <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+      <div class="container px-4">
+        <a class="navbar-brand" href="">
+          
+            <!-- <img src="{% static 'img/brand/logo.png' %}"  alt="logo"   /> -->
+          <h1 class="text-white">Senior Seva Helpline</h1>
+          
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-collapse-main">
+          <!-- Collapse header -->
+          <div class="navbar-collapse-header d-md-none">
+            <div class="row">
+              <div class="col-6 collapse-brand">
+                <a href="">
+                  <img src="{% static 'img/brand/logo.png' %}">
+
+                </a>
+              </div>
+              <div class="col-6 collapse-close">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                  <span></span>
+                  <span></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Navbar items -->
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="{% url 'dashboard_app:login' %}">
+                <i class="ni ni-single-02"></i>
+                <span class="nav-link-inner--text">Admin Login</span>
+              </a>
+            </li>
+            
+           
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Header -->
+    <div class="header bg-gradient-primary py-7 py-lg-8">
+      <div class="container">
+        <div class="header-body text-center mb-7">
+          <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-6">
+              <h1 class="text-white">Admin Login!</h1>
+              <p class="text-lead text-light">Welcome to the Senior Seva Helpline Admin Dashboard!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container mt--8 pb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <div class="card bg-secondary shadow border-0">
+            {% if error_message %}
+            <div class="alert alert-danger" role="alert">
+              <strong>Alert!</strong> {{error_message}}
+          </div>
+          {% endif %}
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+                <small>Login with credentials</small>
+              </div>
+              <form  method="POST" >
+                {% csrf_token %}
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-single-02"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Username" type="text" name="uname" id="uname" value="{{username}}" autocomplete="off">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Password" type="password" name="passwrd" id="passwrd" value="{{password}}">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="button" id="showPasswordToggle">
+                        <i class="fa-solid fa-eye fa-lg"></i>
+                        <i class="fa-solid fa-eye-slash fa-lg" style="display: none;"></i>
+                      </button>
+                  </div>
+                  </div>
+                </div>
+                <div class="custom-control custom-control-alternative custom-checkbox">
+                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+                  <label class="custom-control-label" for=" customCheckLogin">
+                    <span class="text-muted">Remember me</span>
+                  </label>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary my-4">Login</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-6">
+              <a href="#" class="text-light"><small>Forgot password?</small></a>
+            </div>
+            {% comment %} <div class="col-6 text-right">
+              <a href="#" class="text-light"><small>Create new account</small></a>
+            </div> {% endcomment %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="py-5">
+      <div class="container">
+        <div class="row align-items-center justify-content-xl-between">
+          <div class="col-xl-6">
+            <div class="copyright text-center text-xl-left text-muted">
+              © 2023 <a href="" class="font-weight-bold ml-1" target="_blank">Pexel Perfekt Solution</a>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+              <li class="nav-item">
+                <a href="" class="nav-link" target="_blank">Senior Seva Helpline</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link" target="_blank">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link" target="_blank">Blog</a>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!--   Core   -->
+  <script src="{% static 'js/plugins/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+  <!--   Optional JS   -->
+  <!--   Argon JS   -->
+  <script src="{% static 'js/senior-citizen-dashboard.min.js' %}"></script>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  
+</body>
+
+</html>

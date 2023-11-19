@@ -1,0 +1,4 @@
+psycopg2-binary==2.9.7
+colorama==0.4.6
+pytz==2023.3.post1
+gunicorn

@@ -1,0 +1,16 @@
+{% extends 'error_pages/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+  <span class="alert-text"><strong>Alert!</strong> No Senior Citizen Found with this number!
+    <a href="{% url 'add_senior_citizen' %}" class="alert text-white">Click To Add Now</a>
+  </span>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+  </button>
+
+</div>
+  <!-- container-scroller -->
+  {% endblock %}

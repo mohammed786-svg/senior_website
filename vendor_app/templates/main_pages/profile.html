@@ -1,0 +1,354 @@
+{% extends 'main_pages/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="main-content">
+   
+    
+    <!-- Page content -->
+    <div class="container-fluid mt-2 mb-4">
+        <a
+        class="h4 mb-0 text-primary text-uppercase d-none d-lg-inline-block mb-4 mt-2"
+        href="">
+        
+        Profile Details
+        
+    </a>
+    
+        <div class="card card-profile shadow">
+        <div class="card-body">
+    <form method="post" >
+        {% csrf_token %}
+      <h6 class="heading-small text-muted mb-4">Vendor Information</h6>
+      
+      <div class="pl-lg-4">
+        <div class="row">
+          
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label class="form-control-label" for="input-vendorname">Vendor Name</label>
+              <input type="text" id="input-vendorname" class="form-control form-control-alternative" placeholder="Enter Vendor Name" name="vendorname" autocomplete="off" value="{{ data.vendor_name|default:'' }}"  required>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label class="form-control-label" for="input-businessname">Business Name</label>
+              <input type="text" id="input-businessname" class="form-control form-control-alternative" placeholder="Enter Business Name" name="businessname" autocomplete="off" value="{{ data.business_name|default:'' }}"  required>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label class="form-control-label" for="input-ownername">Owner Name</label>
+              <input type="text" id="input-ownername" class="form-control form-control-alternative" placeholder="Enter Owner/Manager Name" name="ownername" autocomplete="off" value="{{ data.manager_or_owner_name|default:'' }}"  required>
+            </div>
+          </div>
+          
+         
+
+        </div>
+<div class="row">
+
+  <div class="col-lg-4">
+    <div class="form-group">
+      <label class="form-control-label" for="input-gender">Gender</label>
+      
+      <select class="form-control form-control-alternative" id="input-gender" name="gender" required>
+        <option value="Male"  {% if data.gender == 'Male' %}selected{% endif %}>Male</option>
+        <option value="Female" {% if data.gender == 'Female' %}selected{% endif %}>Female</option>
+        <option value="Other" {% if data.gender == 'Other' %}selected{% endif %}>Other</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="col-lg-4">
+    <div class="form-group">
+      <label class="form-control-label" for="input-primary-contact">Primary Contact Number</label>
+      <input type="number" id="input-primary-contact" class="form-control form-control-alternative" placeholder="Enter primary contact number" name="primaryno" value="{{ data.mobno|default:'' }}"  required>
+    </div>
+  </div>
+  
+  <div class="col-lg-4">
+    <div class="form-group">
+      <label class="form-control-label" for="input-whatsapp">Whatsapp Number</label>
+      <input type="number" id="input-whatsapp" class="form-control form-control-alternative" placeholder="Active Whatsapp Number" name="whatsappno" value="{{ data.whatsappno|default:'' }}"  required>
+    </div>
+  </div>
+</div>
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="form-group">
+                <label for="date-of-birth" class="form-control-label">Date of Birth</label>
+                <input class="form-control form-control-alternative" type="date"  id="date-of-birth" name="dateofbirth" value="{{ data.dateofbirth|date:'Y-m-d' }}" required>
+            </div>
+          </div>
+          
+          <div class="col-lg-3">
+            <div class="form-group">
+              <label class="form-control-label" for="input-age">Age</label>
+              <input type="number" id="input-age" class="form-control form-control-alternative" placeholder="Enter Age Here" name="age" value="{{ data.age|default:'' }}"  required>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="form-group">
+              <label class="form-control-label" for="input-aadharno">Aadhar / Pan Number</label>
+              <input type="text" id="input-aadharno" class="form-control form-control-alternative" placeholder="Enter Aadhar / PAN Number" name="aadharno" value="{{ data.aadharno|default:'' }}"  required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label for="shop-select" class="form-control-label">Type of Shop</label>
+              <select  class="form-control form-control-alternative" id="shop-select" name="shop"  required>
+               <option value="Grocery">Grocery</option>
+               <option value="Pharmacy">Pharmacy</option>
+               <option value="Fruits">Fruits</option>
+               <option value="Vegetables">Vegetables</option>
+               <option value="Milk and Dairy">Milk and Dairy</option>
+               <option value="General Store">General Store</option>
+               <option value="Sweet Mart">Sweet Mart</option>
+               <option value="Restaurant">Restaurant</option>
+               <option value="Clinic">Clinic</option>
+               <option value="Lab">Lab</option>
+               <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          
+         
+          <div class="col-lg-4" id="other-shop" style="display: none;">
+            <div class="form-group">
+              <label class="form-control-label" for="input-other-shop">Other shop</label>
+              <input id="input-other-shop" class="form-control form-control-alternative" placeholder="Provide type of your shop"  type="text" name="othershop" value="{{ data.other_shop_type_name|default:'' }}"  >
+            </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label for="operate-select" class="form-control-label">Can you do home delivery?</label>
+            <pre>{{data.do_you_home_delivery}}</pre>
+            <select  class="form-control form-control-alternative" id="operate-select" name="canhomedelivery">
+              
+              <option value="1" {% if data.do_you_home_delivery == 'Yes' %}selected{% endif %}>Yes</option>
+              <option value="0" {% if data.do_you_home_delivery == 'No' %}selected{% endif %}>No</option>
+              
+            </select>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-min-prize">Home Delivery Minimum Prize</label>
+            <input id="input-min-prize" class="form-control form-control-alternative" placeholder="Provide minimum delivery prize"  type="text" name="mindeliverycharges" value="{{ data.home_delivery_min_cost|default:'' }}"  >
+          </div>
+        </div>
+       
+        <div class="col-lg-6">
+        <div class="form-group">
+          <label for="time-input" class="form-control-label">Timing of Operation</label>
+          {% with time_parts=data.work_timing|slice:":5" %}
+            <input class="form-control" type="time" id="time-input" name="worktiming" value="{{ time_parts }}" required>
+        {% endwith %}
+          {% comment %} <input class="form-control" type="time" value="" id="time-input" name="worktiming" value="{{ data.work_timing|default:'' }}" required> {% endcomment %}
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label class="form-control-label" for="input-coverage-area">Coverage area in KM</label>
+        <input id="input-coverage-area" class="form-control form-control-alternative" placeholder="Enter how much area can be covered by vendor"  type="number" name="minareakm" value="{{ data.coverage_km|default:'' }}"  >
+      </div>
+    </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+           <div class="form-group">
+             <label for="days-select" class="form-control-label">Working Days</label>
+             <select multiple class="form-control form-control-alternative" id="days-select" name="workdays"  required>
+              {% for day in all_days %}
+        <option value="{{ day }}" {% if day in data.working_days %}selected{% endif %}>{{ day }}</option>
+      {% endfor %}
+             </select>
+           </div>
+         </div>
+
+         
+   </div>
+          
+
+      </div>
+
+      <hr class="my-4" />
+      <!-- Address -->
+      <h6 class="heading-small text-muted mb-4">Contact information</h6>
+      <div class="pl-lg-4">
+        <div class="row">
+          <div class="col-lg-5">
+            <div class="form-group">
+              <label class="form-control-label" for="input-address">Address</label>
+              <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address"  type="text" name="fulladdress" value="{{ data.address|default:'' }}"  required>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="form-group">
+              <label class="form-control-label" for="input-locality">Area Locality</label>
+              <input id="input-locality" class="form-control form-control-alternative" placeholder="Your Locality Area Name"  type="text" name="locality" value="{{ data.area_locality|default:'' }}"  required>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label class="form-control-label" for="input-country">Country</label>
+              <select class="form-control form-control-alternative" id="input-country" name="country" >
+                {% for country in country_data %}
+                <option value="{{ country.country_id }}">{{ country.country_name }}</option>
+              {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label class="form-control-label" for="input-state">State</label>
+                <select class="form-control form-control-alternative" id="input-state" name="state">
+                  {% for state in state_data %}
+                  <option value="{{ state.state_id }}">{{ state.state_name }}</option>
+                {% endfor %}
+                </select>
+              </div>
+            </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label class="form-control-label" for="input-city">City</label>
+              <select class="form-control form-control-alternative" id="input-city" name="city">
+                {% for city in city_data %}
+                  <option value="{{ city.city_id }}">{{ city.city_name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label class="form-control-label" for="input-country">Postal code</label>
+              <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code" name="pincode" value="{{ data.pincode|default:'' }}"  required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label class="form-control-label" for="input-district">District</label>
+                <select class="form-control form-control-alternative" id="input-district" name="district">
+                  {% for district in district_data %}
+                  <option value="{{ district.district_id }}">{{ district.district_name }}</option>
+                {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-taluk">Taluk</label>
+                  <select class="form-control form-control-alternative" id="input-taluk" name="taluk">
+                    {% for taluk in taluk_data %}
+                  <option value="{{ taluk.taluk_id }}">{{ taluk.taluk_name }}</option>
+                {% endfor %}
+                  </select>
+                </div>
+              </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-landmark">Nearest Landmark</label>
+                  <input id="input-landmark" class="form-control form-control-alternative" placeholder="Nearest landmark like car showroom,etc"  type="text" name="landmark" value="{{ data.landmark|default:'' }}"  required>
+                </div>
+              </div>
+          </div>
+          
+      </div>
+
+      <hr class="my-4" />
+      <!-- Description -->
+      <h6 class="heading-small text-muted mb-4">Login Credentials</h6>
+      <div class="pl-lg-4">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label" for="input-username">Username</label>
+              <input id="input-username" class="form-control form-control-alternative" placeholder="Username"  type="text" name="username" value="{{ data.username|default:'' }}"  required>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label" for="input-password">Password</label>
+              <input id="input-password" class="form-control form-control-alternative" placeholder="Password"  type="text" name="password" value="{{ data.password|default:'' }}"  required>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+      <hr class="my-4" />
+      <!-- Description -->
+      <h6 class="heading-small text-muted mb-4">Any Query</h6>
+      <div class="pl-lg-4">
+        <div class="form-group">
+          <label>Other Information?
+          </label>
+          <textarea rows="4" class="form-control form-control-alternative" placeholder="write a few words about yourself..." name="notes" >{{ data.other_notes|default:'' }}</textarea>
+        </div>
+      </div>
+
+      
+
+      <div class="row justify-content-end p-4 mt--1">
+        
+        <button type="submit" class="btn btn-primary my-4">Update Profile </button>
+        
+        
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+    //Calculate Age when dob is selected
+document.addEventListener('DOMContentLoaded', function () {
+    // Get references to the date of birth and age input fields
+    const dateOfBirthInput = document.getElementById('date-of-birth');
+    const ageInput = document.getElementById('input-age');
+
+    // Attach an event listener to the date of birth input field
+    dateOfBirthInput.addEventListener('input', function () {
+        // Get the selected date of birth
+        const dateOfBirth = new Date(dateOfBirthInput.value);
+
+        // Calculate the age
+        const today = new Date();
+        const age = today.getFullYear() - dateOfBirth.getFullYear();
+
+        // Update the age input field with the calculated age
+        ageInput.value = age;
+    });
+});
+
+function toggleOtherSkillInput() {
+  const selectedOther = document.getElementById("shop-select").value;
+  const otherShopInput = document.getElementById("other-shop");
+
+  if (selectedOther === "Other") {
+    otherShopInput.style.display = "block";
+  } else {
+    otherShopInput.style.display = "none";
+  }
+}
+
+</script>
+  {% endblock %}

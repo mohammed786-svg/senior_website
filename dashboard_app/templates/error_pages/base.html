@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Senior Seva Helpline | Dashboard</title>
+    <!-- Favicon -->
+    <link href="./assets/img/brand/favicon.png" rel="icon" type="image/png" />
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+      rel="stylesheet"
+    />
+    <!-- Icons -->
+    <link
+      href="{% static 'js/plugins/nucleo/css/nucleo.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'js/plugins/@fortawesome/fontawesome-free/css/all.min.css' %}"
+      rel="stylesheet"
+    />
+    <!-- CSS Files -->
+    <link href="{% static 'css/senior-citizen-dashboard.css' %}" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/eea5b138cd.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body class="">
+    <div class="row">
+      <div class="col">
+    {% block content %} {% endblock %}
+  </div>
+  </div>
+
+    <!--   Core   -->
+    <script src="{% static 'js/plugins/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!--   Optional JS   -->
+    <script src="{% static 'js/plugins/chart.js/dist/Chart.min.js' %}"></script>
+    <script src="{% static 'js/plugins/chart.js/dist/Chart.extension.js' %}"></script>
+    <!--   Argon JS   -->
+    <script src="{% static 'js/senior-citizen-dashboard.min.js' %}"></script>
+    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  </body>
+</html>

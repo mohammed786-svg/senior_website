@@ -1,0 +1,300 @@
+{% extends 'admin_pages/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="main-content">
+   
+    
+    <!-- Page content -->
+    <div class="container-fluid mt-2 mb-4">
+        <a
+        class="h4 mb-0 text-primary text-uppercase d-none d-lg-inline-block mb-4 mt-2"
+        href="">
+        {% if data %}
+        Update Service Request Details
+        {% else %}
+        Add New Service Request Details
+        {% endif %}
+    </a>
+    {% comment %} <pre class="text-primary ">{{data}}</pre> {% endcomment %}
+        <div class="card card-profile shadow">
+        <div class="card-body">
+    <form method="POST" action="{% url 'dashboard_app:create_service' %}">
+        {% csrf_token %}
+      <h6 class="heading-small text-muted mb-4">Service Request Information</h6>
+      
+     {% if error %}
+     <div class="alert alert-info" role="alert">
+        <strong>Alert!</strong> {{error}}
+    </div>
+     {% endif %}
+      <div class="pl-lg-4">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-primary-contact">Primary Contact Number</label>
+                  <input type="number" id="input-primary-contact" class="form-control form-control-alternative" placeholder="Enter primary contact number" name="primary_no" value="{{ primary_no|default:'' }}"  required>
+                </div>
+              </div>
+
+              <div class="col-lg-9">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-type-of-service">Type of Service</label>
+                  <select class="form-control form-control-alternative" id="input-type-of-service" name="service_name"  onchange="toggleDropdowns()" required>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="Digital awareness">Digital awareness</option>
+                    <option value="Home Care and Deliveries">Home Care and Deliveries</option>
+                    <option value="Health Care">Health Care</option>
+                    <option value="Awareness on government programs">Awareness on government programs</option>
+                    <option value="Seva Mitra">Seva Mitra</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+        
+        </div>
+        <!-- end of row  -->
+        <div class="row">
+          
+
+          
+
+          <div class="col-lg-12" id="digital-awareness-dropdown" style="display: none;">
+            <div class="form-group">
+              <label for="digital-awareness-select" class="form-control-label">Digital Awareness</label>
+              <select class="form-control form-control-alternative" id="digital-awareness-select" name="sub_service_name"  >
+                <option value="" disabled selected>Select an option</option>
+                <option value="Learning E Booking">Learning E Booking</option>
+                <option value="Google search">Google search</option>
+                <option value="E-ticketing">E-ticketing</option>
+                <option value="Banking Process options">Banking Process options</option>
+                <option value="Payment options - Paytm,Google pay">Payment options - Paytm,Google pay</option>
+                <option value="Goods buying options">Goods buying options</option>   
+              </select>
+            </div>
+          </div>
+
+          <div class="col-lg-12" id="home-care-dropdown" style="display: none;">
+            <div class="form-group">
+              <label for="homecare-select" class="form-control-label">Home Care and Deliveries</label>
+              <select class="form-control form-control-alternative" id="homecare-select" name="sub_service_name" >
+                <option value="" disabled selected>Select an option</option>
+                <option value="Home Delivery">Home Delivery</option>
+                <option value="Plumber">Plumber</option>
+                <option value="Electrician">Electrician</option>
+                <option value="Garden">Garden</option>
+                <option value="Cook">Cook</option>
+                <option value="Home care giver full time/part time">Home care giver full time/part time</option>
+                <option value="Parlour Assitance">Parlour Assitance</option>
+                <option value="Tailor">Tailor</option>
+                <option value="Furniture Fix up">Furniture Fix up</option>
+                <option value="Travel Planning">Travel Planning</option>
+                <option value="Mechanic / Punture / Batter kickstart">Mechanic / Punture / Batter kickstart</option>
+                <option value="Community Participation Activities">Community Participation Activities</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-lg-12" id="health-care-dropdown" style="display: none;">
+            <div class="form-group">
+              <label for="healthcare-select" class="form-control-label">Health Care</label>
+              <select class="form-control form-control-alternative" id="healthcare-select" name="sub_service_name"  onchange="toggleAlloypathyDropdown()" >
+                <option value="" disabled selected>Select an option</option>
+                <option value="Allopathy">Allopathy</option>
+                <option value="Ayurved">Ayurved</option>
+                <option value="Hospital Assitance">Hospital Assitance</option>
+                <option value="Hospital visit">Hospital visit</option>
+                <option value="Mental Health">Mental Health</option>
+                <option value="Lab Assitance">Lab Assitance</option>
+                <option value="Dispatch deliveries">Dispatch deliveries</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-lg-12" id="allopathy-dropdown" style="display: none;">
+            <div class="form-group">
+                <label class="form-control-label" for="allopathy-select">Allopathy</label>
+                <select class="form-control form-control-alternative" id="allopathy-select" name="allopathy_type" >
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="Appointment booking">Appointment booking</option>
+                    <option value="Blood">Blood</option>
+                    <option value="X-Ray">X-Ray</option>
+                    <option value="Physio">Physio</option>
+                    <option value="Collections of reports or regrading reports">Collections of reports or regrading reports</option>
+                    <option value="Other">Other</option>
+                    
+                  </select>
+            </div>
+          </div>
+          <div class="col-lg-12" id="government-awareness-dropdown" style="display: none;">
+            <div class="form-group">
+              <label for="government-select" class="form-control-label">Awareness on government programs</label>
+              <select class="form-control form-control-alternative" id="government-select" name="sub_service_name" >
+                <option value="" disabled selected>Select an option</option>
+                <option value="Awareness of community information">Awareness of community information</option>
+                <option value="Awareness of fake information">Awareness of fake information</option>
+                <option value="Camps and checkups happening">Camps and checkups happening</option>
+                <option value="Schemes and update on local / state / national level">Schemes and update on local / state / national level</option>
+                <option value="Fake calls">Fake calls</option>
+                <option value="Fake Invitations">Fake Invitations</option>
+                <option value="Other"></option>
+                
+              </select>
+            </div>
+          </div>
+
+          <div class="col-lg-12" id="seva-mitra-dropdown" style="display: none;">
+            <div class="form-group">
+                <label class="form-control-label" for="input-seva-mitra">Seva Mitra</label>
+                <input type="text" id="input-seva-mitra" class="form-control form-control-alternative" placeholder="Your requirement" name="seva_mitra" value="{{seva_mitra|default:''}}" >
+            </div>
+          </div>
+
+          <div class="col-lg-6" id="other-request" style="display: none;">
+            <div class="form-group">
+              <label class="form-control-label" for="input-other-service">Other Service Request</label>
+              <input type="text" id="input-other-service" class="form-control form-control-alternative" placeholder="Any Other Service Request" name="other_service" value="{{other_service|default:''}}" >
+            </div>
+          </div>
+
+
+
+
+      </div>
+<!-- end of row  -->
+<hr class="my-4" />
+
+      </div>
+     
+      <!-- Description -->
+      <h6 class="heading-small text-muted mb-4">Feedback / Follow Ups</h6>
+      <div class="pl-lg-4">
+        <div class="form-group">
+          <label>Please add feedbacks or follow up details here...
+          </label>
+          <textarea rows="4" class="form-control form-control-alternative" placeholder="feedbacks / follow ups details" name="feedback" >{{ data.feedbacks|default:'' }}</textarea>
+        </div>
+      </div>
+
+      <div class="row justify-content-end p-4 mt--1">
+        {% if data %}
+        <button type="submit" class="btn btn-primary my-4">Update Service Request</button>
+        {% else %}
+        <button type="submit" class="btn btn-primary my-4">Create New Service Request</button>
+        {% endif %}
+        
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+    //Calculate Age when dob is selected
+document.addEventListener('DOMContentLoaded', function () {
+    // Get references to the date of birth and age input fields
+    const dateOfBirthInput = document.getElementById('date-of-birth');
+    const ageInput = document.getElementById('input-age');
+
+    // Attach an event listener to the date of birth input field
+    dateOfBirthInput.addEventListener('input', function () {
+        // Get the selected date of birth
+        const dateOfBirth = new Date(dateOfBirthInput.value);
+
+        // Calculate the age
+        const today = new Date();
+        const age = today.getFullYear() - dateOfBirth.getFullYear();
+
+        // Update the age input field with the calculated age
+        ageInput.value = age;
+    });
+});
+
+
+
+function toggleAlloypathyDropdown(elementSelectID,dropDownID) {
+    const selectedOption = document.getElementById(elementID).value;
+    const healthCareDropdown = document.getElementById(dropDownID);
+    
+    if (selectedOption === '') {
+        // Check if the health care dropdown is visible
+        const isVisible = window.getComputedStyle(healthCareDropdown).display !== 'none';
+        if (isVisible) {
+            // Scroll to the health care dropdown
+            healthCareDropdown.scrollIntoView({ behavior: 'smooth' });
+            alert('Please select a valid option.');
+        }
+    } else {
+        // Code to handle the selected option
+        
+    }
+}
+
+
+function toggleDropdowns() {
+    const selectedOption = document.getElementById('input-type-of-service').value;
+    const digitalAwarenessDropdown = document.getElementById('digital-awareness-dropdown');
+    const homeCareAndDeliveryDropdown = document.getElementById('home-care-dropdown');
+    const healthCareDropdown = document.getElementById('health-care-dropdown');
+    const governmentAwarenessDropdown = document.getElementById('government-awareness-dropdown');
+    const sevaMitraDropdown = document.getElementById('seva-mitra-dropdown');
+    const otherRequestInput = document.getElementById('other-request');
+    const allopathyDropdown = document.getElementById('allopathy-dropdown');
+    const healthcareSelect = document.getElementById('healthcare-select');
+    // Add similar variables for other dropdowns
+  
+    // Hide all dropdowns
+    digitalAwarenessDropdown.style.display = 'none';
+    homeCareAndDeliveryDropdown.style.display = 'none';
+    healthCareDropdown.style.display = 'none';
+    governmentAwarenessDropdown.style.display = 'none';
+    sevaMitraDropdown.style.display = 'none';
+    otherRequestInput.style.display = 'none'; 
+    allopathyDropdown.style.display = 'none';
+    
+  
+    // Show the corresponding dropdown based on the selected option
+    if (selectedOption === 'Digital awareness') {
+      digitalAwarenessDropdown.style.display = 'block';
+    } else if (selectedOption === 'Home Care and Deliveries') {
+        homeCareAndDeliveryDropdown.style.display = 'block';
+    } else if (selectedOption === 'Health Care') {
+        healthCareDropdown.style.display = 'block';
+        const healthcareValue = healthcareSelect.value;
+    if (healthcareValue === 'Allopathy') {
+      allopathyDropdown.style.display = 'block';
+    }
+    } else if (selectedOption === 'Awareness on government programs') {
+        governmentAwarenessDropdown.style.display = 'block';
+        governmentAwarenessDropdown.focus()
+    } else if (selectedOption === 'Seva Mitra') {
+        sevaMitraDropdown.style.display = 'block';
+        document.getElementById('input-seva-mitra').focus();
+    } else if (selectedOption === 'Other') {
+        otherRequestInput.style.display = 'block';
+        document.getElementById('input-other-service').focus();
+    }else {
+        healthcareSelect.value = ''; 
+      }
+  }
+  
+  function toggleAlloypathyDropdown() {
+    const selectedOption = document.getElementById('healthcare-select').value;
+    const allopathyDropdown = document.getElementById('allopathy-dropdown');
+  
+    // Hide the Allopathy dropdown by default
+    allopathyDropdown.style.display = 'none';
+  
+    // Show the Allopathy dropdown if "Allopathy" is selected
+    if (selectedOption === 'Allopathy') {
+      allopathyDropdown.style.display = 'block';
+    }else{
+        allopathyDropdown.style.display = 'none';
+    }
+  }
+
+</script>
+  {% endblock %}
