@@ -17,6 +17,8 @@ import uuid
 import mimetypes
 import time
 import threading
+
+#Add all views here.
 # Create your views here.
 def index(request):
     current_url = request.get_full_path()
