@@ -31,7 +31,8 @@
 class="ftco-section-3 img"
 
 >
-
+<div class="card card-profile shadow">
+  <div class="card-body">
 <div class="container">
   <div class="row d-md-flex">
     {% comment %} <div class="col-md-6 d-flex ftco-animate">
@@ -49,14 +50,14 @@ class="ftco-section-3 img"
         <div class="row">
           <div class="col-lg-6">
             <div class="form-group">
-              <label class="form-control-label text-white" for="input-fullname">Full Name</label>
+              <label class="form-control-label" for="input-fullname">Full Name</label>
               <input type="text" id="input-fullname" class="form-control form-control-alternative" placeholder="Enter full name" name="fullname" autocomplete="off" value="{{ data.fullname|default:'' }}"  required>
             </div>
           </div>
 
           <div class="col-lg-6">
             <div class="form-group">
-              <label class="form-control-label text-white" for="input-primary-contact">Primary Contact Number</label>
+              <label class="form-control-label" for="input-primary-contact">Primary Contact Number</label>
               <input type="number" id="input-primary-contact" class="form-control form-control-alternative" placeholder="Enter primary contact number" name="primaryno" value="{{ data.primaryno|default:'' }}"  required>
             </div>
           </div>
@@ -65,19 +66,19 @@ class="ftco-section-3 img"
         <div class="row">
           <div class="col-lg-3">
             <div class="form-group">
-                <label for="date-of-birth" class="form-control-label text-white">Date of Birth</label>
+                <label for="date-of-birth" class="form-control-label">Date of Birth</label>
                 <input class="form-control form-control-alternative" type="date"  id="date-of-birth" name="dateofbirth" value="{{ data.dateofbirth|date:'Y-m-d' }}" required>
             </div>
           </div>
           <div class="col-lg-3">
             <div class="form-group">
-              <label class="form-control-label text-white" for="input-age">Age</label>
+              <label class="form-control-label" for="input-age">Age</label>
               <input type="number" id="input-age" class="form-control form-control-alternative" placeholder="Enter Age Here" name="age" value="{{ data.age|default:'' }}" >
             </div>
           </div>
           <div class="col-lg-3">
             <div class="form-group">
-              <label class="form-control-label text-white" for="input-gender">Gender</label>
+              <label class="form-control-label" for="input-gender">Gender</label>
               <select class="form-control form-control-alternative" id="input-gender" name="gender">
                 <option value="Male"  {% if data.gender == 'Male' %}selected{% endif %}>Male</option>
                 <option value="Female" {% if data.gender == 'Female' %}selected{% endif %}>Female</option>
@@ -88,27 +89,27 @@ class="ftco-section-3 img"
           
           <div class="col-lg-3">
             <div class="form-group">
-              <label class="form-control-label text-white" for="input-whatsapp">Whatsapp Number</label>
+              <label class="form-control-label" for="input-whatsapp">Whatsapp Number</label>
               <input type="number" id="input-whatsapp" class="form-control form-control-alternative" placeholder="Active Whatsapp Number" name="whatsappno" value="{{ data.whatsappno|default:'' }}"  required>
             </div>
           </div>
 
         </div>
       </div>
-      <hr class="my-4 text-white" />
+      <hr class="my-4 " />
       <!-- Address -->
-      <h6 class="heading-small text-white mb-4">Contact information</h6>
+      <h6 class="heading-small text-muted mb-4">Contact information</h6>
       <div class="pl-lg-4">
         <div class="row">
           <div class="col-lg-8">
             <div class="form-group">
-              <label class="form-control-label text-white" for="input-address">Address</label>
+              <label class="form-control-label" for="input-address">Address</label>
               <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address"  type="text" name="fulladdress" value="{{ data.fulladdress|default:'' }}"  required>
             </div>
           </div>
           <div class="col-lg-4">
             <div class="form-group">
-              <label class="form-control-label text-white" for="input-country">Country</label>
+              <label class="form-control-label" for="input-country">Country</label>
               <select class="form-control form-control-alternative" id="input-country" name="country" >
                 <option>India</option>
               </select>
@@ -118,7 +119,7 @@ class="ftco-section-3 img"
         <div class="row">
             <div class="col-lg-4">
               <div class="form-group">
-                <label class="form-control-label text-white" for="input-state">State</label>
+                <label class="form-control-label" for="input-state">State</label>
                 <select class="form-control form-control-alternative" id="input-state" name="state">
                   <option>Karnataka</option>
                 </select>
@@ -126,7 +127,7 @@ class="ftco-section-3 img"
             </div>
           <div class="col-lg-4">
             <div class="form-group">
-              <label class="form-control-label text-white" for="input-city">City</label>
+              <label class="form-control-label" for="input-city">City</label>
               <select class="form-control form-control-alternative" id="input-city" name="city">
                 <option>Belgaum</option>
               </select>
@@ -134,7 +135,7 @@ class="ftco-section-3 img"
           </div>
           <div class="col-lg-4">
             <div class="form-group">
-              <label class="form-control-label text-white" for="input-country">Postal code</label>
+              <label class="form-control-label" for="input-country">Postal code</label>
               <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code" name="pincode" value="{{ data.pincode|default:'' }}"  required>
             </div>
           </div>
@@ -142,7 +143,7 @@ class="ftco-section-3 img"
         <div class="row">
             <div class="col-lg-4">
               <div class="form-group">
-                <label class="form-control-label text-white" for="input-district">District</label>
+                <label class="form-control-label" for="input-district">District</label>
                 <select class="form-control form-control-alternative" id="input-district" name="district">
                   <option>Belgaum</option>
                 </select>
@@ -150,7 +151,7 @@ class="ftco-section-3 img"
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
-                  <label class="form-control-label text-white" for="input-taluk">Taluk</label>
+                  <label class="form-control-label" for="input-taluk">Taluk</label>
                   <select class="form-control form-control-alternative" id="input-taluk" name="taluk">
                     <option>Belgaum</option>
                   </select>
@@ -158,16 +159,16 @@ class="ftco-section-3 img"
               </div>
             <div class="col-lg-4">
                 <div class="form-group">
-                  <label class="form-control-label text-white" for="input-landmark">Nearest Landmark</label>
+                  <label class="form-control-label" for="input-landmark">Nearest Landmark</label>
                   <input id="input-landmark" class="form-control form-control-alternative" placeholder="Nearest landmark like car showroom,etc"  type="text" name="landmark" value="{{ data.landmark|default:'' }}"  required>
                 </div>
               </div>
           </div>
           
       </div>
-      <hr class="my-4 text-white" />
+      <hr class="my-4 " />
       <!-- Description -->
-      <h6 class="heading-small text-white mb-4">Any Query</h6>
+      <h6 class="heading-small text-muted mb-4">Any Query</h6>
       <div class="pl-lg-4">
         <div class="form-group">
           <label>Questions ?</label>
@@ -186,6 +187,9 @@ class="ftco-section-3 img"
     
   </div>
 </div>
+</div>
+</div>
+
 </section>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
