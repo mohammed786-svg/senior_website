@@ -24,7 +24,7 @@ from geopy.geocoders import Nominatim
 # Create your views here.
 def index(request):
     current_url = request.get_full_path()
-    get_location_hierarchy("India")
+    # get_location_hierarchy("India")
     return render(request,"index.html",{'current_url': current_url})
 
 def inbound(request):

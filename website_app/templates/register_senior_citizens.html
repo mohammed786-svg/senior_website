@@ -290,7 +290,21 @@ $.validator.addMethod('validIndianPhoneNumber', function(value, element) {
         // var date_of_delivery = document.getElementById('date-of-delivery').value.trim();
         // var add_information = $("#additional_info").val();
     
-        
+        const fullname = $('#input-fullname').val();
+    const primaryno = $('#input-primary-contact').val();
+    const whatsappno = $('#input-whatsapp').val();
+    const age = $('#input-age').val();
+    const gender = $('#input-gender').val();
+    const fulladdress = $('#input-address').val();
+    const country = $('#input-country').val();
+    const state = $('#input-state').val();
+    const district = $('#input-district').val();
+    const taluk = $('#input-taluk').val();
+    const pincode = $('#input-postal-code').val();
+    const city = $('#input-city').val();
+    const landmark = $('#input-landmark').val();
+    const dateofbirth = $('#date-of-birth').val();
+    const questions = $('textarea[name="questions"]').val();
     
             // Create a JSON object with the form data
             const dictMap = {
